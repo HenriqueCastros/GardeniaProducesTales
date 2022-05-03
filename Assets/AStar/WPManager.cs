@@ -20,7 +20,7 @@ public class WPManager : MonoBehaviour {
     public Graph graph = new Graph();
 
     // Use this for initialization
-    void Start() {
+    void Awake() {
 
         // Check we have some waypoints to work with
         if (waypoints.Length > 0) {

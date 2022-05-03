@@ -31,9 +31,11 @@ public class FollowPath : MonoBehaviour {
         // Set the current Node
         currentNode = wpManager.GetComponent<WPManager>().findNearestNode(transform.position);
         SetNewGoal(player.transform.position);
+        //GoBehindHeli();
     }
 
-    public void SetNewGoal(Vector3 GoalPosition) {
+    public void SetNewGoal(Vector3 GoalPosition)
+    {
         GameObject goalNode = wpManager.GetComponent<WPManager>().findNearestNode(GoalPosition);
 
         // Use the AStar method passing it currentNode and distination
@@ -53,7 +55,8 @@ public class FollowPath : MonoBehaviour {
     void LateUpdate() {
         if (Vector3.Distance(
             g.getPathPoint(g.getPathLength() - 1).transform.position,
-            wpManager.GetComponent<WPManager>().findNearestNode(player.transform.position).transform.position) > accuracy) {
+            wpManager.GetComponent<WPManager>().findNearestNode(player.transform.position).transform.position) > accuracy)
+        {
             SetNewGoal(player.transform.position);
         }
 
