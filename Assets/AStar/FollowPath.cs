@@ -8,8 +8,6 @@ public class FollowPath : MonoBehaviour {
     float speed = 50.0f;
     // Final distance from target
     float accuracy = 1.0f;
-    // Tank rotation speed
-    float rotSpeed = 20.0f;
     // Access to the WPManager script
     public GameObject wpManager;
     public GameObject player;
@@ -30,35 +28,32 @@ public class FollowPath : MonoBehaviour {
         g = wpManager.GetComponent<WPManager>().graph;
         // Set the current Node
         currentNode = wpManager.GetComponent<WPManager>().findNearestNode(transform.position);
-        SetNewGoal(player.transform.position);
-        //GoBehindHeli();
-    }
 
-    public void SetNewGoal(Vector3 GoalPosition)
-    {
-        GameObject goalNode = wpManager.GetComponent<WPManager>().findNearestNode(GoalPosition);
 
+        GameObject goalNode = wpManager.GetComponent<WPManager>().findNearestNode(player.transform.position);
         // Use the AStar method passing it currentNode and distination
         g.AStar(currentNode, goalNode);
         // Reset index
         currentWP = 0;
     }
 
-    public void GoBehindHeli() {
-        // Use the AStar method passing it currentNode and distination
-        g.AStar(currentNode, wps[11]);
-        // Reset index
-        currentWP = 0;
+    public void SetNewGoal()
+    {
+        GameObject goalNode = wpManager.GetComponent<WPManager>().findNearestNode(player.transform.position);
+
+        if (g.getPathLength() != 0 && Vector3.Distance(
+            g.getPathPoint(g.getPathLength()-1).transform.position,
+            goalNode.transform.position) > accuracy)
+        {
+            // Use the AStar method passing it currentNode and distination
+            g.AStar(currentNode, goalNode);
+            // Reset index
+            currentWP = 0;
+        }
     }
 
     // Update is called once per frame
     void LateUpdate() {
-        if (Vector3.Distance(
-            g.getPathPoint(g.getPathLength() - 1).transform.position,
-            wpManager.GetComponent<WPManager>().findNearestNode(player.transform.position).transform.position) > accuracy)
-        {
-            SetNewGoal(player.transform.position);
-        }
 
         // If we've nowhere to go then just return
         if (g.getPathLength() == 0 || currentWP == g.getPathLength())
