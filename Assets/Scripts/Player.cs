@@ -92,4 +92,27 @@ public class Player : MonoBehaviour
             }
         }
     }
+      private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("buffvida"))
+        {
+            Destroy(collision.gameObject);          
+            entity.maxHealth += 20;
+            entity.currentHealth += 20;
+            print("MaxLife was buffed.");
+        }
+
+    else if(collision.gameObject.CompareTag("buffdefesa"))
+        {
+            Destroy(collision.gameObject);          
+            entity.defense += 1;
+            print("Defense was buffed.");
+        }
+         else if(collision.gameObject.CompareTag("buffataque"))
+        {
+            Destroy(collision.gameObject);          
+            entity.damage += 1;
+            print("Attack was buffed.");
+        }
+    }
 }
