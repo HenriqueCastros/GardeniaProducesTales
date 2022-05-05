@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public Entity entity;
     private GameObject gardeniaButton;
+    private GameObject callButton;
 
     [Header("Player Regeneration")]
     public bool regenerateHp = true;
@@ -39,7 +40,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         gardeniaButton = GameObject.Find("GardeniaButton");
-        
+        callButton = GameObject.Find("CallButton");
+
         if (manager == null)
         {
             Debug.LogError("instancie o gameManager para essa entidade");
@@ -63,7 +65,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         gardeniaButton.SetActive(CheckCloseToTag("gardenia", 30) && !GameObject.Find("PauseMenu"));
-        
+
+        if (gardeniaButton.activeSelf)
+            callButton.SetActive(false);
+        else
+            callButton.SetActive(true);
+
         // if (CheckCloseToTag("gardenia", 30)) {
         //     Debug.Log(gardeniaButton);
         // }
