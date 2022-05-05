@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public Entity entity;
 
+    [Header("Player UI")]  
+    public Slider health;
+
     [Header("Player Regeneration")]
     public bool regenerateHp = true;
-    public int regenerateHPValue = 5;
-    public int regenerateHPTime = 2;
+    public int regenerateHPValue = 1;
+    public int regenerateHPTime = 1000;
 
     [Header("Game Manager")]
 
@@ -31,12 +34,22 @@ public class Player : MonoBehaviour
         int dmg = (int)manager.CalculateDamage(this, 7);
         int def = (int)manager.CalculateDefence(this, 4);
 
-        entity.currentMana = 1;
-        entity.currentHealth = entity.maxHealth;
+        entity.currentHealth = 2;
+
         entity.currentStamina = entity.maxStamina;
+
+        health.value = (float)entity.currentHealth;   
 
         StartCoroutine(RegenerateHealth());
         
+    }
+
+    private void Update(){
+        health.value = (float)entity.currentHealth/(float)entity.maxHealth;
+        if(Input.GetKeyDown(KeyCode.Space)){
+            entity.currentHealth -= 1;
+
+        }
     }
 
     IEnumerator RegenerateHealth(){

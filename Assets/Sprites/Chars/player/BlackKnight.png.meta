@@ -174,6 +174,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1324,6 +1325,57 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      BlackKnight_17: 1440799100626924117
+      BlackKnight_38: -988289520747247246
+      BlackKnight_25: -6043993237739142950
+      BlackKnight_11: 3265004324984433566
+      BlackKnight_43: -5032029416689061161
+      BlackKnight_2: 9152253679536387402
+      BlackKnight_18: 241415565728334336
+      BlackKnight_20: -4392991389374914457
+      BlackKnight_19: 4515204340543645095
+      BlackKnight_7: -8434791320925354059
+      BlackKnight_26: -9212580893807533095
+      BlackKnight_30: -8547257625710093645
+      BlackKnight_27: -1640906762083605747
+      BlackKnight_28: 6131493305820291550
+      BlackKnight_35: 2813585562106318203
+      BlackKnight_46: -3511289394677246336
+      BlackKnight_12: -2587181382638471042
+      BlackKnight_31: 8093119700443016422
+      BlackKnight_1: -7706798523822224507
+      BlackKnight_21: -6879399820261386
+      BlackKnight_10: 6842761712821982159
+      BlackKnight_44: 2868535467713145472
+      BlackKnight_4: -4846278226737002618
+      BlackKnight_29: -5119927093590301772
+      BlackKnight_34: -1070307692251494610
+      BlackKnight_33: 359756898704726014
+      BlackKnight_22: 8442943400871752811
+      BlackKnight_0: 4498544600597911442
+      BlackKnight_5: -5994477587977693925
+      BlackKnight_36: 3898491938785109377
+      BlackKnight_42: -8303111473430760908
+      BlackKnight_15: -8247959518010530012
+      BlackKnight_3: -8694942820055324018
+      BlackKnight_40: -570855008906420538
+      BlackKnight_6: 8973803128076388328
+      BlackKnight_14: -7118986809889314751
+      BlackKnight_37: -2705544905096393945
+      BlackKnight_39: 3992303449313395500
+      BlackKnight_13: -8754730139713715837
+      BlackKnight_41: -6705644600489570686
+      BlackKnight_8: 676286061733029934
+      BlackKnight_47: -8894049794487117708
+      BlackKnight_32: 7106630974127848784
+      BlackKnight_16: 3815852767650696477
+      BlackKnight_48: -8975557388318027132
+      BlackKnight_9: 5921999654926421957
+      BlackKnight_24: 28481501462039096
+      BlackKnight_23: 5663048177374504434
+      BlackKnight_49: -5354059147339919628
+      BlackKnight_45: 6006863621878278788
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
