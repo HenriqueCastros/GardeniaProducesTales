@@ -691,6 +691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.05
   goingUpTime: 100
+  time: 0
 --- !u!114 &148456936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30574,6 +30575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerAnimator: {fileID: 1142825269}
+  allowMoviment: 1
 --- !u!95 &1142825269
 Animator:
   serializedVersion: 3

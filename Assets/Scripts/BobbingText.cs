@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BobbingTextTag : MonoBehaviour
+public class BobbingText : MonoBehaviour
 {
     public float speed = 0.05f;
     public int goingUpTime = 100;

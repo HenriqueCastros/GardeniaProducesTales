@@ -5,15 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public void PauseGame(){
+    void SetPlayerMoviment(bool active)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        for (int i = 0; i < players.Length; ++i)
+        {
+            players[i].GetComponent<PlayerControler>().allowMoviment = active;
+        }
+    }
+
+    public void PauseGame()
+    {
+        SetPlayerMoviment(false);
         Time.timeScale--;
     }
     
-    public void ResumeGame(){
+    public void ResumeGame()
+    {
+        SetPlayerMoviment(true);
         Time.timeScale++;
     }
 
-    public void BackToMenu() {
+    public void BackToMenu()
+    {
         SceneManager.LoadScene(0);
     }
 }
