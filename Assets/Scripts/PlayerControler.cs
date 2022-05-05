@@ -12,7 +12,8 @@ public class PlayerControler : MonoBehaviour
     float input_x = 0;
     float input_y = 0;
     bool isWalking = false;
-    
+    public bool allowMoviment = true;
+
     Rigidbody2D rb2D;
     Vector2 moviment = Vector2.zero;
 
@@ -27,6 +28,8 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!allowMoviment) return;
+
         input_x = Input.GetAxisRaw("Horizontal");
         input_y = Input.GetAxisRaw("Vertical");
         isWalking = (input_x != 0 || input_y != 0);
@@ -38,13 +41,12 @@ public class PlayerControler : MonoBehaviour
         }
 
         playerAnimator.SetBool("isWalking", isWalking);
-
+        
         if(Input.GetButtonDown("Fire1"))
             playerAnimator.SetTrigger("attack");
     }
     
     private void FixedUpdate() {
-        
         rb2D.MovePosition(rb2D.position + moviment * player.entity.speed * Time.fixedDeltaTime);
     }
 }

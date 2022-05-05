@@ -10,18 +10,18 @@ public class Player : MonoBehaviour
 
     [Header("Player Regeneration")]
     public bool regenerateHp = true;
-
+    
     public int regenerateHPValue = 5;
 
     public int regenerateHPTime = 2;
-
+    
     [Header("Game Manager")]
     public GameManager manager;
-
+    
     bool CheckCloseToTag(string tag, float minimumDistance)
     {
         GameObject[] goWithTag = GameObject.FindGameObjectsWithTag(tag);
-
+        
         for (int i = 0; i < goWithTag.Length; ++i)
         {
             if (
@@ -65,15 +65,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         gardeniaButton.SetActive(CheckCloseToTag("gardenia", 30) && !GameObject.Find("PauseMenu"));
-
         if (gardeniaButton.activeSelf)
             callButton.SetActive(false);
         else
             callButton.SetActive(true);
-
-        // if (CheckCloseToTag("gardenia", 30)) {
-        //     Debug.Log(gardeniaButton);
-        // }
     }
 
     IEnumerator RegenerateHealth()
