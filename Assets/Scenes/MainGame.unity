@@ -32880,7 +32880,7 @@ GameObject:
   - component: {fileID: 1471151544}
   - component: {fileID: 1471151546}
   m_Layer: 0
-  m_Name: fada_0
+  m_Name: Gardenia
   m_TagString: gardenia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33135,9 +33135,9 @@ RectTransform:
   m_Father: {fileID: 594264726}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -104, y: -84}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -100, y: 100}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1586151849

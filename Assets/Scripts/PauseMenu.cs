@@ -8,13 +8,13 @@ public class PauseMenu : MonoBehaviour
     void SetPlayerMoviment(bool active)
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
+        
         for (int i = 0; i < players.Length; ++i)
         {
             players[i].GetComponent<PlayerControler>().allowMoviment = active;
         }
     }
-
+    
     public void PauseGame()
     {
         SetPlayerMoviment(false);
