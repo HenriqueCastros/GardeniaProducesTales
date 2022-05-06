@@ -174,6 +174,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1324,6 +1325,57 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      BlackKnightLeft_18: -3887896361925178317
+      BlackKnightLeft_1: -8619901984645582033
+      BlackKnightLeft_22: 4913720778872070966
+      BlackKnightLeft_35: -5837777335247537858
+      BlackKnightLeft_41: -916979519116885223
+      BlackKnightLeft_14: -5407946284635181554
+      BlackKnightLeft_7: -6666802527470148590
+      BlackKnightLeft_37: -1863754589220151713
+      BlackKnightLeft_45: 7451742775077209722
+      BlackKnightLeft_17: 7775183776846479740
+      BlackKnightLeft_19: 8298806042150481842
+      BlackKnightLeft_15: 2595852177447900745
+      BlackKnightLeft_33: 1673781865568047172
+      BlackKnightLeft_20: 8698125014665401378
+      BlackKnightLeft_42: 2296075609986416695
+      BlackKnightLeft_2: -1186502671791295873
+      BlackKnightLeft_44: -2345703167781402447
+      BlackKnightLeft_25: -8763894889447111837
+      BlackKnightLeft_29: 715318030737484340
+      BlackKnightLeft_47: -6035661734023813820
+      BlackKnightLeft_40: 1212037794110395285
+      BlackKnightLeft_8: 2116056239833607593
+      BlackKnightLeft_27: -2536155607298080037
+      BlackKnightLeft_31: 5910562399395901396
+      BlackKnightLeft_43: -8930589035460816881
+      BlackKnightLeft_24: -3108492999181888576
+      BlackKnightLeft_48: -6898204796353093643
+      BlackKnightLeft_6: 5543238322736883681
+      BlackKnightLeft_23: 902928966360347552
+      BlackKnightLeft_34: 6832349890234497679
+      BlackKnightLeft_4: -1138801624704699084
+      BlackKnightLeft_9: 2733899238960799680
+      BlackKnightLeft_30: 5206103577468140377
+      BlackKnightLeft_0: 8665403842703200386
+      BlackKnightLeft_32: 298905225416915810
+      BlackKnightLeft_13: 8903339213853336885
+      BlackKnightLeft_11: -3543504347925347444
+      BlackKnightLeft_46: -2109008765675108436
+      BlackKnightLeft_21: -1340332859151774
+      BlackKnightLeft_3: 212669696697274612
+      BlackKnightLeft_16: 1498722809468257193
+      BlackKnightLeft_28: 2414545216219794339
+      BlackKnightLeft_38: 4548060838274291747
+      BlackKnightLeft_5: 8134861015662776089
+      BlackKnightLeft_10: 4151582631777689515
+      BlackKnightLeft_39: -6031183997085321821
+      BlackKnightLeft_36: 8033345326757240196
+      BlackKnightLeft_49: -7945487412270393909
+      BlackKnightLeft_12: 6582854173790706731
+      BlackKnightLeft_26: -224531957608427751
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

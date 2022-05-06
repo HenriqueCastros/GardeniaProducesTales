@@ -324,6 +324,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -2524,6 +2525,107 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      orc spritesheet calciumtrice_26: -7563145045760200824
+      orc spritesheet calciumtrice_11: 6425673729483047457
+      orc spritesheet calciumtrice_68: -2933474515473946500
+      orc spritesheet calciumtrice_63: 4263885901894440648
+      orc spritesheet calciumtrice_25: 2622634616894489755
+      orc spritesheet calciumtrice_75: -4375062778046572870
+      orc spritesheet calciumtrice_53: 8764338648724851840
+      orc spritesheet calciumtrice_5: 2230180122700533724
+      orc spritesheet calciumtrice_46: -1275013853106591782
+      orc spritesheet calciumtrice_54: 2948228846482265844
+      orc spritesheet calciumtrice_97: 7543299215340133043
+      orc spritesheet calciumtrice_44: -6825018923868332821
+      orc spritesheet calciumtrice_87: 7489724280287977923
+      orc spritesheet calciumtrice_8: 7956114576542747764
+      orc spritesheet calciumtrice_58: -9006138282511242193
+      orc spritesheet calciumtrice_80: -685738907596332779
+      orc spritesheet calciumtrice_60: -4835996767154778873
+      orc spritesheet calciumtrice_69: 2362762584367659821
+      orc spritesheet calciumtrice_24: -6915584856692015118
+      orc spritesheet calciumtrice_40: 7825842029290074675
+      orc spritesheet calciumtrice_73: 347911639855543669
+      orc spritesheet calciumtrice_19: 1004919664114397523
+      orc spritesheet calciumtrice_65: 3559066310551772083
+      orc spritesheet calciumtrice_56: 3038392314771863493
+      orc spritesheet calciumtrice_29: 9042536293024887491
+      orc spritesheet calciumtrice_91: 1602313160064089219
+      orc spritesheet calciumtrice_49: -4811382945821596181
+      orc spritesheet calciumtrice_98: -3750133555815880547
+      orc spritesheet calciumtrice_64: 6317261286945175266
+      orc spritesheet calciumtrice_61: 658486386735423752
+      orc spritesheet calciumtrice_62: 7275270765333821596
+      orc spritesheet calciumtrice_23: 2777316634973432178
+      orc spritesheet calciumtrice_71: 1330711012180065093
+      orc spritesheet calciumtrice_37: 200205844582919953
+      orc spritesheet calciumtrice_78: 4171332463855691178
+      orc spritesheet calciumtrice_6: 4875557561131578626
+      orc spritesheet calciumtrice_45: -5816087774177137527
+      orc spritesheet calciumtrice_14: -7400673527164532469
+      orc spritesheet calciumtrice_30: 4460107969051178739
+      orc spritesheet calciumtrice_36: 5213232136469564527
+      orc spritesheet calciumtrice_34: -6186154773298879365
+      orc spritesheet calciumtrice_43: 7527383614413322382
+      orc spritesheet calciumtrice_72: -2195428644580739026
+      orc spritesheet calciumtrice_7: 3087217405123615486
+      orc spritesheet calciumtrice_47: 9060903019321255519
+      orc spritesheet calciumtrice_76: 7813797527966468917
+      orc spritesheet calciumtrice_31: 4470411784148544872
+      orc spritesheet calciumtrice_93: 8651190327843082413
+      orc spritesheet calciumtrice_92: 3217951517039140974
+      orc spritesheet calciumtrice_95: -2927495635039991245
+      orc spritesheet calciumtrice_50: 7367151739446230563
+      orc spritesheet calciumtrice_51: 2280486174339662464
+      orc spritesheet calciumtrice_74: -7555619561326746982
+      orc spritesheet calciumtrice_52: -3816510622076999332
+      orc spritesheet calciumtrice_99: 3523631561219533286
+      orc spritesheet calciumtrice_15: -5071063099637640047
+      orc spritesheet calciumtrice_94: -360159413595341194
+      orc spritesheet calciumtrice_12: -3648812239862332847
+      orc spritesheet calciumtrice_28: -6743985341434147471
+      orc spritesheet calciumtrice_88: -5166955613499548983
+      orc spritesheet calciumtrice_1: 6545297775876105799
+      orc spritesheet calciumtrice_79: -995275265374431859
+      orc spritesheet calciumtrice_35: 3615845653414402135
+      orc spritesheet calciumtrice_13: -4341173626546815802
+      orc spritesheet calciumtrice_83: -3055690054438464965
+      orc spritesheet calciumtrice_9: -4571298456827731111
+      orc spritesheet calciumtrice_10: 1786923328513242898
+      orc spritesheet calciumtrice_90: -343550425822189641
+      orc spritesheet calciumtrice_77: -4591996173876960269
+      orc spritesheet calciumtrice_42: -6999365264342846080
+      orc spritesheet calciumtrice_33: -5875002170838399232
+      orc spritesheet calciumtrice_21: -390737348418857082
+      orc spritesheet calciumtrice_48: 6029916509468242206
+      orc spritesheet calciumtrice_84: 5579905689530416094
+      orc spritesheet calciumtrice_82: -8641462658678371119
+      orc spritesheet calciumtrice_96: 8167316959456316977
+      orc spritesheet calciumtrice_32: 1209884649090597649
+      orc spritesheet calciumtrice_85: -4298062919415589937
+      orc spritesheet calciumtrice_67: -8858395151798860678
+      orc spritesheet calciumtrice_39: -9216880286447769732
+      orc spritesheet calciumtrice_0: -2237910669568544742
+      orc spritesheet calciumtrice_17: -8913767827427939473
+      orc spritesheet calciumtrice_16: -3407752313908221198
+      orc spritesheet calciumtrice_55: -2200983224290953176
+      orc spritesheet calciumtrice_86: 6577948692437772919
+      orc spritesheet calciumtrice_18: 4130582259059527262
+      orc spritesheet calciumtrice_4: -7414760921593925904
+      orc spritesheet calciumtrice_22: 3397575350334313241
+      orc spritesheet calciumtrice_41: -6570375804219094207
+      orc spritesheet calciumtrice_59: -4396102285073856451
+      orc spritesheet calciumtrice_89: 1142004301351014139
+      orc spritesheet calciumtrice_20: 6652379106273985936
+      orc spritesheet calciumtrice_2: -4447893189365505051
+      orc spritesheet calciumtrice_3: 2432637419273248280
+      orc spritesheet calciumtrice_57: -7756383759854448033
+      orc spritesheet calciumtrice_81: 7332830107973891592
+      orc spritesheet calciumtrice_70: 6048524850527046338
+      orc spritesheet calciumtrice_38: 238116836278346758
+      orc spritesheet calciumtrice_66: -5898767636557693877
+      orc spritesheet calciumtrice_27: 8633490366217641506
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

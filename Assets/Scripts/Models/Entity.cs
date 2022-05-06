@@ -31,4 +31,14 @@ public class Entity
     public float speed = 10f;
     public int inteligence = 1;
     public int willPower = 1;
+    
+    [Header("Combat")]
+    public float attackDistance = 0.5f;
+    public float attackTimer = 1f;
+    public float cooldown = 2;
+    public bool inCombat = false;
+    public GameObject target;
+    public bool combatCoroutine = false;
+    public bool dead = false;
+
 }

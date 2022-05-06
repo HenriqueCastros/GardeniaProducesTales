@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public Entity entity;
     private GameObject gardeniaButton;
     private GameObject callButton;
+
+    [Header("Player UI")]
+    public Slider health;
 
     [Header("Player Regeneration")]
     public bool regenerateHp = true;
@@ -48,27 +51,33 @@ public class Player : MonoBehaviour
             return;
         }
 
-        entity.maxHealth = manager.CalculateHealth(this);
-        entity.maxMana = manager.CalculateMana(this);
-        entity.maxStamina = manager.CalculateStamina(this);
+        entity.maxHealth = manager.CalculateHealth(entity);
+        entity.maxMana = manager.CalculateMana(entity);
+        entity.maxStamina = manager.CalculateStamina(entity);
 
-        int dmg = (int) manager.CalculateDamage(this, 7);
-        int def = (int) manager.CalculateDefence(this, 4);
+        int dmg = (int) manager.CalculateDamage(entity, 7);
+        int def = (int) manager.CalculateDefence(entity, 4);
 
-        entity.currentMana = 1;
-        entity.currentHealth = entity.maxHealth;
+        entity.currentHealth = 2;
+
         entity.currentStamina = entity.maxStamina;
+
+        health.value = (float)entity.currentHealth;   
 
         StartCoroutine(RegenerateHealth());
     }
 
-    void Update()
-    {
+    private void Update(){
         gardeniaButton.SetActive(CheckCloseToTag("gardenia", 30) && !GameObject.Find("PauseMenu"));
         if (gardeniaButton.activeSelf)
             callButton.SetActive(false);
         else
             callButton.SetActive(true);
+        health.value = (float)entity.currentHealth/(float)entity.maxHealth;
+        if(Input.GetKeyDown(KeyCode.Space)){
+            entity.currentHealth -= 1;
+
+        }
     }
 
     IEnumerator RegenerateHealth()
