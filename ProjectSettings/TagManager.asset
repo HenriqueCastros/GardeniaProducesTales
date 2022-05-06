@@ -9,6 +9,7 @@ TagManager:
   - buffvida
   - buffdefesa
   - buffataque
+  - Enemy
   layers:
   - Default
   - TransparentFX

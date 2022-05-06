@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,11 +19,12 @@ public class UITextTypeWriter : MonoBehaviour
 
     void SetPlayerMoviment(bool active)
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        var entities =
+            FindObjectsOfType<MonoBehaviour>().OfType<EntityController>();
 
-        for (int i = 0; i < players.Length; ++i)
+        foreach (EntityController e in entities)
         {
-            players[i].GetComponent<PlayerControler>().allowMoviment = active;
+            e.allowMoviment = active;
         }
     }
 
@@ -72,7 +74,7 @@ public class UITextTypeWriter : MonoBehaviour
         bobbingText.SetActive(true);
         mode = "close";
     }
-    
+
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
