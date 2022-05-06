@@ -49,24 +49,23 @@ public class BossController : MonoBehaviour
         entity.maxMana = manager.CalculateMana(entity);
         entity.maxStamina = manager.CalculateStamina(entity);
                 
-        entity.maxHealth = entity.maxHealth;
-        entity.maxMana = entity.maxMana;
-        entity.maxStamina = entity.maxStamina;
+        entity.currentHealth = entity.maxHealth;
+        entity.currentMana = entity.maxMana;
+        entity.currentStamina = entity.maxStamina;
 
         currentWaitTime = waitTime;
 
         if(waypointList.Length > 0 ){
             targetWapoint = waypointList[currenntWaypoint];
-            lastDistanceToTarget = Vector2.Distance(transform.position, targetWapoint.position);
+            lastDistanceToTarget = Vector2.Distance(transform.position, targetWapoint.position);            
         }
-        
-        
     }
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-    private void Update()
+
+    void Update()
     {
         if(entity.dead){
             return;
@@ -118,7 +117,7 @@ public class BossController : MonoBehaviour
     /// <param name="other">The other Collider2D involved in this collision.</param>
     private void OnTriggerStay2D(Collider2D colider)
     {
-        if(colider.gameObject.CompareTag("Player") && !entity.dead){
+        if(colider.tag == "Player" && !entity.dead){
             entity.inCombat = true;
             entity.target = colider.gameObject;
         }
@@ -128,10 +127,10 @@ public class BossController : MonoBehaviour
     /// OnTriggerExit is called when the Collider other has stopped touching the trigger.
     /// </summary>
     /// <param name="other">The other Collider involved in this collision.</param>
-    void OnTriggerExit2D(Collider2D colider)
+    private void OnTriggerExit2D(Collider2D colider)
     {
                 
-        if(colider.gameObject.CompareTag("Player") && !entity.dead){
+        if(colider.tag == "Player"){
             entity.inCombat = false;
             entity.target = null;
             
@@ -139,6 +138,7 @@ public class BossController : MonoBehaviour
     }
 
     void Patrulhar(){
+
         if(entity.dead){
             return;
         }
@@ -155,12 +155,18 @@ public class BossController : MonoBehaviour
                 currenntWaypoint++;
 
                 if(currenntWaypoint >= waypointList.Length ){
-                    targetWapoint = waypointList[currenntWaypoint];
-                    lastDistanceToTarget = Vector2.Distance(transform.position, targetWapoint.position);
-
-                    currentWaitTime = waitTime;
+                    currenntWaypoint = 0;
                 }
+
+                targetWapoint = waypointList[currenntWaypoint];
+            
+                lastDistanceToTarget = Vector2.Distance(transform.position, targetWapoint.position);
+
+                currentWaitTime = waitTime;
                 
+            }
+            else{
+                currentWaitTime -= Time.deltaTime;
             }
         }else{
             animator.SetBool("isWalking",true);
@@ -181,14 +187,17 @@ public class BossController : MonoBehaviour
             yield return new WaitForSeconds(entity.cooldown);
 
             if(entity.target != null && !entity.target.GetComponent<Player>().entity.dead){
-                //animator.setBool("knifeAtack", true);
+                animator.SetTrigger("knifeAtack");
 
                 float distance = Vector2.Distance(entity.target.transform.position, transform.position);
+
+                Debug.Log("distance: " + distance);
+                Debug.Log("entity.attackDistance: " + entity.attackDistance);
 
                 if(distance <= entity.attackDistance){
 
                     int dmg = manager.CalculateDamage(entity, entity.damage);
-                    int def = manager.CalculateDefence(entity.target.GetComponent<Player>().entity, entity.target.GetComponent<Player>().entity.damage);
+                    int def = manager.CalculateDefence(entity.target.GetComponent<Player>().entity, entity.target.GetComponent<Player>().entity.defense);
 
                     int resultDmg = dmg - def;
 
@@ -196,8 +205,8 @@ public class BossController : MonoBehaviour
                         resultDmg = 0;
                     }
 
-                    Debug.Log("Damage: " + resultDmg);
-                    entity.target.GetComponent<Player>().entity.currentHealth =+ resultDmg;
+                    Debug.Log("PLAYER APANHOU: "  + resultDmg);
+                    entity.target.GetComponent<Player>().entity.currentHealth -= resultDmg;
                 }
             }
         }
@@ -218,12 +227,15 @@ public class BossController : MonoBehaviour
         entity.dead = true;
         entity.inCombat = false;
         entity.target = null;
-        animator.SetBool("isWalking", true);
+        animator.SetBool("isWalking", false);
         //manager.GainExp(rewardExperience);
 
         Debug.Log("Inimigo morreu" + entity.name);
-        //animator.setTrigger("dead");
+
+        animator.SetBool("isDead", true);
+        StopAllCoroutines();
+        StartCoroutine(Respawn());
+
     }
 
-    
 }

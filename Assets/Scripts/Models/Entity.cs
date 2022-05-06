@@ -28,12 +28,12 @@ public class Entity
     public int defense = 1;
     public int resistence = 1;
     public int strength = 1;
-    public float speed = 10f;
+    public float speed = 60f;
     public int inteligence = 1;
     public int willPower = 1;
     
     [Header("Combat")]
-    public float attackDistance = 0.5f;
+    public float attackDistance = 5f;
     public float attackTimer = 1f;
     public float cooldown = 2;
     public bool inCombat = false;
