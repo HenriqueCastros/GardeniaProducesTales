@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public Entity entity;
     private GameObject gardeniaButton;
 
-    [Header("Player UI")]  
+    [Header("Player UI")]
     public Slider health;
 
     [Header("Player Regeneration")]
@@ -49,12 +49,12 @@ public class Player : MonoBehaviour
             return;
         }
 
-        entity.maxHealth = manager.CalculateHealth(this);
-        entity.maxMana = manager.CalculateMana(this);
-        entity.maxStamina = manager.CalculateStamina(this);
+        entity.maxHealth = manager.CalculateHealth(entity);
+        entity.maxMana = manager.CalculateMana(entity);
+        entity.maxStamina = manager.CalculateStamina(entity);
 
-        int dmg = (int) manager.CalculateDamage(this, 7);
-        int def = (int) manager.CalculateDefence(this, 4);
+        int dmg = (int) manager.CalculateDamage(entity, 7);
+        int def = (int) manager.CalculateDefence(entity, 4);
 
         entity.currentHealth = 2;
 
