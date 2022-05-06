@@ -8,21 +8,16 @@ public class Graph {
 
     public Graph() { }
 
-    public void AddNode(GameObject id, bool removeRenderer = true, bool removeCollider = true, bool removeId = true) {
+    public void AddNode(GameObject id) {
         Node node = new Node(id);
         nodes.Add(node);
 
-        //remove colliders and mesh renderer
-        if (removeCollider)
-            GameObject.Destroy(id.GetComponent<Collider>());
-        if (removeRenderer)
-            GameObject.Destroy(id.GetComponent<Renderer>());
-        if (removeId) {
-            TextMesh[] textms = id.GetComponentsInChildren<TextMesh>() as TextMesh[];
+        GameObject.Destroy(id.GetComponent<Collider>());
+        GameObject.Destroy(id.GetComponent<Renderer>());
+        TextMesh[] textms = id.GetComponentsInChildren<TextMesh>() as TextMesh[];
 
-            foreach (TextMesh tm in textms)
-                GameObject.Destroy(tm.gameObject);
-        }
+        foreach (TextMesh tm in textms)
+            GameObject.Destroy(tm.gameObject);
     }
 
     public void AddEdge(GameObject fromNode, GameObject toNode) {
@@ -53,13 +48,6 @@ public class Graph {
         return pathList[index].id;
     }
 
-    public void printPath() {
-        foreach (Node n in pathList) {
-            Debug.Log(n.id.name);
-        }
-    }
-
-
     public bool AStar(GameObject startId, GameObject endId) {
         Node start = findNode(startId);
         Node end = findNode(endId);
@@ -81,7 +69,9 @@ public class Graph {
         while (open.Count > 0) {
             int i = lowestF(open);
             Node thisnode = open[i];
-            if (thisnode.id == endId)  //path found
+
+            // Caminho encontrado
+            if (thisnode.id == endId) 
             {
                 reconstructPath(start, end);
                 return true;
@@ -95,23 +85,26 @@ public class Graph {
                 neighbour = e.endNode;
                 neighbour.g = thisnode.g + distance(thisnode, neighbour);
 
+                // Se o node estiver em closed nao precisa explroar
                 if (closed.IndexOf(neighbour) > -1)
                     continue;
 
                 tentative_g_score = thisnode.g + distance(thisnode, neighbour);
 
+                // Se o node ainda nao tiver sido explorado
                 if (open.IndexOf(neighbour) == -1) {
                     open.Add(neighbour);
                     tentative_is_better = true;
+                // Se o custo dele melhorou do que o custo atual
                 } else if (tentative_g_score < neighbour.g) {
                     tentative_is_better = true;
                 } else
                     tentative_is_better = false;
 
+                // Se o custo novo for melhor att
                 if (tentative_is_better) {
                     neighbour.cameFrom = thisnode;
                     neighbour.g = tentative_g_score;
-                    //neighbour.h = distance(thisnode,neighbour);
                     neighbour.h = distance(thisnode, end);
                     neighbour.f = neighbour.g + neighbour.h;
                 }
@@ -144,18 +137,15 @@ public class Graph {
 
     int lowestF(List<Node> l) {
         float lowestf = 0;
-        int count = 0;
         int iteratorCount = 0;
 
+        lowestf = l[0].f;
+        iteratorCount = 0;
         for (int i = 0; i < l.Count; i++) {
-            if (i == 0) {
+            if (l[i].f <= lowestf) {
                 lowestf = l[i].f;
-                iteratorCount = count;
-            } else if (l[i].f <= lowestf) {
-                lowestf = l[i].f;
-                iteratorCount = count;
+                iteratorCount = i;
             }
-            count++;
         }
         return iteratorCount;
     }

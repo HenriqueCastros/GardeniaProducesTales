@@ -1,39 +1,28 @@
 ﻿using UnityEngine;
 
 public class FollowPath : MonoBehaviour {
-
-    // Tank targer
-    Transform goal;
-    // Tank speed
-    float speed = 50.0f;
-    // Final distance from target
-    float accuracy = 1.0f;
-    // Access to the WPManager script
     public GameObject wpManager;
     public GameObject player;
-    // Array of waypoints
+
+    Transform goal;
+    float speed = 50.0f;
+    float accuracy = 1.0f;
+
+
     GameObject[] wps;
-    // Current waypoint
     GameObject currentNode;
-    // Starting waypoint index
     int currentWP = 0;
-    // Access to the Graph script
     Graph g;
 
-    // Use this for initialization
     void Start() {
-
-        // Get hold of wpManager and Graph scripts
         wps = wpManager.GetComponent<WPManager>().waypoints;
         g = wpManager.GetComponent<WPManager>().graph;
-        // Set the current Node
+
         currentNode = wpManager.GetComponent<WPManager>().findNearestNode(transform.position);
 
-
+        // Inicializar posicao da Gardenia junto ao player
         GameObject goalNode = wpManager.GetComponent<WPManager>().findNearestNode(player.transform.position);
-        // Use the AStar method passing it currentNode and distination
         g.AStar(currentNode, goalNode);
-        // Reset index
         currentWP = 0;
     }
 
@@ -41,35 +30,30 @@ public class FollowPath : MonoBehaviour {
     {
         GameObject goalNode = wpManager.GetComponent<WPManager>().findNearestNode(player.transform.position);
 
+        // Checa se o goal atual e diferente da posicao do player (goalNode)
         if (g.getPathLength() != 0 && Vector3.Distance(
             g.getPathPoint(g.getPathLength()-1).transform.position,
             goalNode.transform.position) > accuracy)
         {
-            // Use the AStar method passing it currentNode and distination
             g.AStar(currentNode, goalNode);
-            // Reset index
             currentWP = 0;
         }
     }
 
-    // Update is called once per frame
     void LateUpdate() {
-
-        // If we've nowhere to go then just return
         if (g.getPathLength() == 0 || currentWP == g.getPathLength())
             return;
 
-        //the node we are closest to at this moment
         currentNode = g.getPathPoint(currentWP);
 
-        //if we are close enough to the current waypoint move to next
+        // Se chegarmos no Node atual, ir para o prox
         if (Vector3.Distance(
             g.getPathPoint(currentWP).transform.position,
             transform.position) < accuracy) {
             currentWP++;
         }
 
-        //if we are not at the end of the path
+        // Movimentar a Gardenia
         if (currentWP < g.getPathLength()) {
             goal = g.getPathPoint(currentWP).transform;
 
