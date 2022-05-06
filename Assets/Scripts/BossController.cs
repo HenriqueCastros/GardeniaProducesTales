@@ -206,7 +206,12 @@ public class BossController : MonoBehaviour
                     }
 
                     Debug.Log("PLAYER APANHOU: "  + resultDmg);
-                    entity.target.GetComponent<Player>().entity.currentHealth -= resultDmg;
+                    int playerCurrentHealth = entity.target.GetComponent<Player>().entity.currentHealth;
+                    if (playerCurrentHealth - resultDmg > 0)
+                        entity.target.GetComponent<Player>().entity.currentHealth -= resultDmg;
+                    else if (playerCurrentHealth > 0 && playerCurrentHealth - resultDmg <= 0)
+                        entity.target.GetComponent<Player>().entity.currentHealth = 0;
+
                 }
             }
         }
