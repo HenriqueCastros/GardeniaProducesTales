@@ -20,6 +20,7 @@ public class Node
 		yPos = i.transform.position.y;
 		zPos = i.transform.position.z;
 		path = null;
+		g = 0;
 	}
 	
 	public GameObject getId()
