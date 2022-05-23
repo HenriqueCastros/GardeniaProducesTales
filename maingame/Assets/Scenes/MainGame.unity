@@ -30005,6 +30005,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1471151547}
+        m_TargetAssemblyTypeName: GardeniaInteraction, Assembly-CSharp
+        m_MethodName: generateNewInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 84426780}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -32113,7 +32125,7 @@ GameObject:
   - component: {fileID: 1304049609}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: GardeniaChat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32974,6 +32986,7 @@ GameObject:
   - component: {fileID: 1471151545}
   - component: {fileID: 1471151544}
   - component: {fileID: 1471151546}
+  - component: {fileID: 1471151547}
   m_Layer: 0
   m_Name: Gardenia
   m_TagString: gardenia
@@ -33060,6 +33073,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wpManager: {fileID: 1641758518}
   player: {fileID: 1142825267}
+--- !u!114 &1471151547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471151543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6cf4ac945e38b43b7d9fd1670b4e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPromt: {fileID: 1304049607}
 --- !u!1 &1506736755
 GameObject:
   m_ObjectHideFlags: 0
@@ -33596,301 +33622,202 @@ MonoBehaviour:
   links:
   - node1: {fileID: 346727978}
     node2: {fileID: 343550027}
-    dir: 1
   - node1: {fileID: 343550027}
     node2: {fileID: 207289883}
-    dir: 1
   - node1: {fileID: 346727978}
     node2: {fileID: 207289883}
-    dir: 1
   - node1: {fileID: 207289883}
     node2: {fileID: 1223218395}
-    dir: 1
   - node1: {fileID: 1223218395}
     node2: {fileID: 319770948}
-    dir: 1
   - node1: {fileID: 2005132120}
     node2: {fileID: 319770948}
-    dir: 1
   - node1: {fileID: 319770948}
     node2: {fileID: 663873984}
-    dir: 1
   - node1: {fileID: 663873984}
     node2: {fileID: 1223218395}
-    dir: 1
   - node1: {fileID: 547350911}
     node2: {fileID: 319770948}
-    dir: 1
   - node1: {fileID: 547350911}
     node2: {fileID: 663873984}
-    dir: 1
   - node1: {fileID: 1140458602}
     node2: {fileID: 420222077}
-    dir: 1
   - node1: {fileID: 547350911}
     node2: {fileID: 1140458602}
-    dir: 1
   - node1: {fileID: 420222077}
     node2: {fileID: 531232369}
-    dir: 1
   - node1: {fileID: 531232369}
     node2: {fileID: 2081896574}
-    dir: 1
   - node1: {fileID: 2081896574}
     node2: {fileID: 1102293351}
-    dir: 1
   - node1: {fileID: 2081896574}
     node2: {fileID: 1529427883}
-    dir: 1
   - node1: {fileID: 1102293351}
     node2: {fileID: 1529427883}
-    dir: 1
   - node1: {fileID: 1529427883}
     node2: {fileID: 647989558}
-    dir: 1
   - node1: {fileID: 647989558}
     node2: {fileID: 914487485}
-    dir: 1
   - node1: {fileID: 914487485}
     node2: {fileID: 778467831}
-    dir: 1
   - node1: {fileID: 914487485}
     node2: {fileID: 1637486193}
-    dir: 1
   - node1: {fileID: 1637486193}
     node2: {fileID: 647989558}
-    dir: 1
   - node1: {fileID: 1637486193}
     node2: {fileID: 420222077}
-    dir: 1
   - node1: {fileID: 420222077}
     node2: {fileID: 647989558}
-    dir: 1
   - node1: {fileID: 1637486193}
     node2: {fileID: 778467831}
-    dir: 1
   - node1: {fileID: 1140458602}
     node2: {fileID: 1637486193}
-    dir: 1
   - node1: {fileID: 531232369}
     node2: {fileID: 1223218395}
-    dir: 1
   - node1: {fileID: 1078251112}
     node2: {fileID: 547350911}
-    dir: 1
   - node1: {fileID: 1078251112}
     node2: {fileID: 1255577431}
-    dir: 1
   - node1: {fileID: 1255577431}
     node2: {fileID: 1140458602}
-    dir: 1
   - node1: {fileID: 32111565}
     node2: {fileID: 1255577431}
-    dir: 1
   - node1: {fileID: 1140458602}
     node2: {fileID: 32111565}
-    dir: 1
   - node1: {fileID: 1637486193}
     node2: {fileID: 1255577431}
-    dir: 1
   - node1: {fileID: 1637486193}
     node2: {fileID: 32111565}
-    dir: 1
   - node1: {fileID: 32111565}
     node2: {fileID: 778467831}
-    dir: 1
   - node1: {fileID: 32111565}
     node2: {fileID: 1611780546}
-    dir: 1
   - node1: {fileID: 1611780546}
     node2: {fileID: 1867084226}
-    dir: 1
   - node1: {fileID: 1867084226}
     node2: {fileID: 1255577431}
-    dir: 1
   - node1: {fileID: 1265956541}
     node2: {fileID: 1867084226}
-    dir: 1
   - node1: {fileID: 1265956541}
     node2: {fileID: 1255577431}
-    dir: 1
   - node1: {fileID: 735210027}
     node2: {fileID: 1265956541}
-    dir: 1
   - node1: {fileID: 735210027}
     node2: {fileID: 1255577431}
-    dir: 1
   - node1: {fileID: 1874624742}
     node2: {fileID: 735210027}
-    dir: 1
   - node1: {fileID: 1078251112}
     node2: {fileID: 1874624742}
-    dir: 1
   - node1: {fileID: 1078251112}
     node2: {fileID: 735210027}
-    dir: 1
   - node1: {fileID: 633768891}
     node2: {fileID: 1874624742}
-    dir: 1
   - node1: {fileID: 633768891}
     node2: {fileID: 1029556823}
-    dir: 1
   - node1: {fileID: 1029556823}
     node2: {fileID: 1874624742}
-    dir: 1
   - node1: {fileID: 815337620}
     node2: {fileID: 1029556823}
-    dir: 1
   - node1: {fileID: 246130156}
     node2: {fileID: 1029556823}
-    dir: 1
   - node1: {fileID: 245009167}
     node2: {fileID: 633768891}
-    dir: 1
   - node1: {fileID: 1029556823}
     node2: {fileID: 245009167}
-    dir: 1
   - node1: {fileID: 735210027}
     node2: {fileID: 1029556823}
-    dir: 1
   - node1: {fileID: 1029556823}
     node2: {fileID: 815337620}
-    dir: 1
   - node1: {fileID: 1265956541}
     node2: {fileID: 735210027}
-    dir: 1
   - node1: {fileID: 1265956541}
     node2: {fileID: 1522977347}
-    dir: 1
   - node1: {fileID: 1522977347}
     node2: {fileID: 815337620}
-    dir: 1
   - node1: {fileID: 1265956541}
     node2: {fileID: 815337620}
-    dir: 1
   - node1: {fileID: 815337620}
     node2: {fileID: 1588298242}
-    dir: 1
   - node1: {fileID: 1588298242}
     node2: {fileID: 245009167}
-    dir: 1
   - node1: {fileID: 1306885423}
     node2: {fileID: 1588298242}
-    dir: 1
   - node1: {fileID: 1522977347}
     node2: {fileID: 1306885423}
-    dir: 1
   - node1: {fileID: 1522977347}
     node2: {fileID: 1867084226}
-    dir: 1
   - node1: {fileID: 1867084226}
     node2: {fileID: 1942395144}
-    dir: 1
   - node1: {fileID: 1611780546}
     node2: {fileID: 1942395144}
-    dir: 1
   - node1: {fileID: 339644214}
     node2: {fileID: 1942395144}
-    dir: 1
   - node1: {fileID: 1610550377}
     node2: {fileID: 339644214}
-    dir: 1
   - node1: {fileID: 445446860}
     node2: {fileID: 1610550377}
-    dir: 1
   - node1: {fileID: 1610550377}
     node2: {fileID: 1306885423}
-    dir: 1
   - node1: {fileID: 445446860}
     node2: {fileID: 1306885423}
-    dir: 1
   - node1: {fileID: 1942395144}
     node2: {fileID: 1306885423}
-    dir: 1
   - node1: {fileID: 245009167}
     node2: {fileID: 56838564}
-    dir: 1
   - node1: {fileID: 245009167}
     node2: {fileID: 147888250}
-    dir: 1
   - node1: {fileID: 56838564}
     node2: {fileID: 147888250}
-    dir: 1
   - node1: {fileID: 179577264}
     node2: {fileID: 147888250}
-    dir: 1
   - node1: {fileID: 179577264}
     node2: {fileID: 56838564}
-    dir: 1
   - node1: {fileID: 147888250}
     node2: {fileID: 1058273456}
-    dir: 1
   - node1: {fileID: 1588298242}
     node2: {fileID: 1058273456}
-    dir: 1
   - node1: {fileID: 147888250}
     node2: {fileID: 1588298242}
-    dir: 1
   - node1: {fileID: 1058273456}
     node2: {fileID: 104840354}
-    dir: 1
   - node1: {fileID: 1058273456}
     node2: {fileID: 179577264}
-    dir: 1
   - node1: {fileID: 179577264}
     node2: {fileID: 1667912435}
-    dir: 1
   - node1: {fileID: 1667912435}
     node2: {fileID: 104840354}
-    dir: 1
   - node1: {fileID: 1871449807}
     node2: {fileID: 1667912435}
-    dir: 1
   - node1: {fileID: 104840354}
     node2: {fileID: 1871449807}
-    dir: 1
   - node1: {fileID: 445446860}
     node2: {fileID: 104840354}
-    dir: 1
   - node1: {fileID: 104840354}
     node2: {fileID: 252327818}
-    dir: 1
   - node1: {fileID: 445446860}
     node2: {fileID: 252327818}
-    dir: 1
   - node1: {fileID: 1871449807}
     node2: {fileID: 252327818}
-    dir: 1
   - node1: {fileID: 1871449807}
     node2: {fileID: 1646117100}
-    dir: 1
   - node1: {fileID: 252327818}
     node2: {fileID: 1646117100}
-    dir: 1
   - node1: {fileID: 1646117100}
     node2: {fileID: 1295579892}
-    dir: 1
   - node1: {fileID: 1295579892}
     node2: {fileID: 1939662462}
-    dir: 1
   - node1: {fileID: 1939662462}
     node2: {fileID: 1646117100}
-    dir: 1
   - node1: {fileID: 1939662462}
     node2: {fileID: 556092958}
-    dir: 1
   - node1: {fileID: 556092958}
     node2: {fileID: 825470330}
-    dir: 1
   - node1: {fileID: 825470330}
     node2: {fileID: 1667912435}
-    dir: 1
   - node1: {fileID: 825470330}
     node2: {fileID: 2128777495}
-    dir: 1
   - node1: {fileID: 815337620}
     node2: {fileID: 735210027}
-    dir: 1
 --- !u!4 &1641758520
 Transform:
   m_ObjectHideFlags: 0

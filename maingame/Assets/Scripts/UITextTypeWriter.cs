@@ -7,6 +7,7 @@ using UnityEngine.UI;
 // attach to UI Text component (with the full text already there)
 public class UITextTypeWriter : MonoBehaviour
 {
+    private static int MAX_TXT_LEN = 200;
     TMPro.TextMeshProUGUI txt;
 
     GameObject bobbingText;
@@ -41,7 +42,7 @@ public class UITextTypeWriter : MonoBehaviour
         }
     }
 
-    void OnEnable()
+    public void OnEnable()
     {
         bobbingText.SetActive(false);
 
@@ -61,8 +62,9 @@ public class UITextTypeWriter : MonoBehaviour
     IEnumerator PlayText()
     {
         mode = "write";
+        bobbingText.SetActive(false);
 
-        foreach (char c in story)
+        foreach (char c in story.Substring(0, story.Length > MAX_TXT_LEN ? MAX_TXT_LEN : story.Length - 1))
         {
             txt.text += c;
             if (mode == "write")
@@ -72,7 +74,10 @@ public class UITextTypeWriter : MonoBehaviour
         }
 
         bobbingText.SetActive(true);
-        mode = "close";
+        if (story.Length <= MAX_TXT_LEN)
+            mode = "close";
+        else
+            mode = "show_more";
     }
 
     void Update()
@@ -87,6 +92,11 @@ public class UITextTypeWriter : MonoBehaviour
             else if (mode == "write")
             {
                 mode = "close";
+            }else if (mode == "show_more")
+            {
+                story = story.Remove(0, MAX_TXT_LEN);
+                txt.text = "";
+                StartCoroutine("PlayText");
             }
         }
     }

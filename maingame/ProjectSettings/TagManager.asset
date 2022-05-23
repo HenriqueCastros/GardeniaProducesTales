@@ -10,6 +10,7 @@ TagManager:
   - buffdefesa
   - buffataque
   - Enemy
+  - GardeniaChat
   layers:
   - Default
   - TransparentFX
