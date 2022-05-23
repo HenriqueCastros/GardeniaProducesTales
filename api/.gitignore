@@ -1,1 +1,3 @@
 /venv
+/gamelog
+__pycache__/

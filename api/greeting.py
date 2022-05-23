@@ -1,26 +1,29 @@
 from flask import Flask, request, jsonify
+import json
+
 import gpt2
+
 app = Flask(__name__)
+
+scenarios = dict()
+with open('gardenia_contexts.json') as json_file:
+    scenarios = json.load(json_file)
 
 @app.route('/getmsg/', methods=['GET'])
 def respond():
-    # Retrieve the name from the url parameter /getmsg/?name=
-    name = request.args.get("input", None)
+    # Retrieve the name from the url parameter /getmsg/?mode=
+    gpt_input = request.args.get("input", None)
+    mode = request.args.get("mode", "introduction")
 
     # For debugging
-    print(f"Received: {name}")
+    print(f"Received: {gpt_input}")
 
     response = {}
 
-    name = gpt2.generate_text(name)
-    # Check if the user sent a name at all
-    if not name:
-        response["ERROR"] = "No input found. Please send a input."
-    # Check if the user entered a number
-    elif str(name).isdigit():
-        response["ERROR"] = "The input can't be numeric. Please send a string."
-    else:
-        response["MESSAGE"] = f"{name}"
+    if not gpt_input:
+        gpt_input = scenarios[mode]
+
+    response["MESSAGE"] = gpt2.generate_text(gpt_input, max_length=150)
 
     # Return the response in json format
     return jsonify(response)
