@@ -31,6 +31,7 @@ public class Entity
     public float speed = 60f;
     public int inteligence = 1;
     public int willPower = 1;
+    public bool respawn = false;
     
     [Header("Combat")]
     public float attackDistance = 5f;

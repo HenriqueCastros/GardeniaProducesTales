@@ -42,6 +42,7 @@ public class BossController : EntityController
     Rigidbody2D rb2D;
 
     Animator animator;
+    GameObject attackObj;
 
     // public bool allowMoviment = true;
     // Vector2 vector2 = Vector2.zero;
@@ -55,6 +56,7 @@ public class BossController : EntityController
         animator = GetComponent<Animator>();
 
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        attackObj = gameObject.transform.Find("AttackArea").gameObject;
 
         entity.maxHealth = manager.CalculateHealth(entity);
         entity.maxMana = manager.CalculateMana(entity);
@@ -100,36 +102,23 @@ public class BossController : EntityController
         }
         else
         {
-            if (entity.attackTimer > 0)
-            {
-                entity.attackTimer -= Time.deltaTime;
-            }
 
-            if (entity.attackTimer < 0)
-            {
-                entity.attackTimer = 0;
-            }
-
-            if (entity.target != null && entity.inCombat)
-            {
+            //if (entity.target != null && entity.inCombat)
+            //{
                 if (!entity.combatCoroutine)
                 {
+                    entity.combatCoroutine = true;
                     StartCoroutine(Attack());
                 }
-                else
-                {
-                    entity.combatCoroutine = false;
-                    StopCoroutine(Attack());
-                }
-            }
+                //else
+                //{
+                    //entity.combatCoroutine = false;
+                //    StopCoroutine(Attack());
+                //}
+            //}
         }
     }
 
-    /// <summary>
-    /// Sent each frame where another object is within a trigger collider
-    /// attached to this object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
     private void OnTriggerStay2D(Collider2D colider)
     {
         if (entity.dead) return;
@@ -143,6 +132,7 @@ public class BossController : EntityController
 
     private void OnTriggerEnter2D(Collider2D colider)
     {
+
         if (colider.tag == "PlayerHitbox")
         {
             TakeDamage(colider.transform.parent.gameObject);
@@ -239,74 +229,15 @@ public class BossController : EntityController
 
     IEnumerator Attack()
     {
-        entity.combatCoroutine = true;
-
-        while (true)
-        {
-            yield return new WaitForSeconds(entity.cooldown);
-
-            if (
-                entity.target != null &&
-                !entity.target.GetComponent<PlayerControler>().entity.dead
-            )
-            {
-                animator.SetTrigger("knifeAtack");
-
-                float distance =
-                    Vector2
-                        .Distance(entity.target.transform.position,
-                        transform.position);
-
-                Debug.Log("distance: " + distance);
-                Debug.Log("entity.attackDistance: " + entity.attackDistance);
-
-                if (distance <= entity.attackDistance)
-                {
-                    int dmg = manager.CalculateDamage(entity, entity.damage);
-                    int def =
-                        manager
-                            .CalculateDefence(entity
-                                .target
-                                .GetComponent<PlayerControler>()
-                                .entity,
-                            entity
-                                .target
-                                .GetComponent<PlayerControler>()
-                                .entity
-                                .defense);
-
-                    int resultDmg = dmg - def;
-
-                    if (resultDmg < 0)
-                    {
-                        resultDmg = 0;
-                    }
-
-                    Debug.Log("PLAYER APANHOU: " + resultDmg);
-                    int playerCurrentHealth =
-                        entity
-                            .target
-                            .GetComponent<PlayerControler>()
-                            .entity
-                            .currentHealth;
-                    if (playerCurrentHealth - resultDmg > 0)
-                        entity
-                            .target
-                            .GetComponent<PlayerControler>()
-                            .entity
-                            .currentHealth -= resultDmg;
-                    else if (
-                        playerCurrentHealth > 0 &&
-                        playerCurrentHealth - resultDmg <= 0
-                    )
-                        entity
-                            .target
-                            .GetComponent<PlayerControler>()
-                            .entity
-                            .currentHealth = 0;
-                }
-            }
-        }
+        animator.SetTrigger("attack");
+        entity.inCombat = true;
+        yield return new WaitForSeconds(entity.attackDelay);
+        attackObj.SetActive(true);
+        yield return new WaitForSeconds(entity.attackTimer);
+        attackObj.SetActive(false);
+        yield return new WaitForSeconds(entity.attackRecharge);
+        entity.inCombat = false;
+        entity.combatCoroutine = false;
     }
 
     IEnumerator Respawn()
@@ -333,6 +264,7 @@ public class BossController : EntityController
 
         animator.SetBool("isDead", true);
         StopAllCoroutines();
-        StartCoroutine(Respawn());
+        if (entity.respawn)
+            StartCoroutine(Respawn());
     }
 }
