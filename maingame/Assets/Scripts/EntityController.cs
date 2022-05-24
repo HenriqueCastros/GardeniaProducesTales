@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class EntityController : MonoBehaviour
 {
     public bool allowMoviment = true;
+    public Entity entity = new Entity();
 }

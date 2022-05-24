@@ -7,44 +7,30 @@ using UnityEngine;
 public class BossController : EntityController
 {
     [Header("Controller")]
-    public Entity entity = new Entity();
 
     public GameManager manager;
-
     [Header("Patrol")]
     public Transform[] waypointList;
-
     public float arrivalDistance = 0.5f;
-
     public float waitTime = 0;
-
+    
     //Privates
     Transform targetWapoint;
-
     int currenntWaypoint = 0;
-
     float lastDistanceToTarget = 0f;
-
     float currentWaitTime = 0f;
-
     [Header("Experience Reword")]
     public int rewardExperience = 10;
-
     public int lootGoldMin = 3;
-
     public int lootGoldMax = 10;
-
+    
     [Header("Respawn")]
     public GameObject prefab;
-
     public bool respawn = true;
-
     public float respawnTime = 5f;
-
     Rigidbody2D rb2D;
-
     Animator animator;
-
+    
     // public bool allowMoviment = true;
     // Vector2 vector2 = Vector2.zero;
     /// <summary>
@@ -55,7 +41,7 @@ public class BossController : EntityController
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        
+
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         entity.maxHealth = manager.CalculateHealth(entity);
@@ -134,11 +120,41 @@ public class BossController : EntityController
     /// <param name="other">The other Collider2D involved in this collision.</param>
     private void OnTriggerStay2D(Collider2D colider)
     {
-        if (colider.tag == "Player" && !entity.dead)
+        if (entity.dead) return;
+
+        if (colider.tag == "Player")
         {
             entity.inCombat = true;
             entity.target = colider.gameObject;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D colider)
+    {
+        if (colider.tag == "PlayerHitbox")
+        {
+            Debug.Log("dano");
+            TakeDamage(colider.transform.parent.gameObject);
+        }
+    }
+    
+    private void TakeDamage(GameObject damageDealer)
+    {
+        Debug.Log(damageDealer);
+        Debug.Log(damageDealer.GetComponent<EntityController>().entity);
+        
+        // int dmg = manager.CalculateDamage(damageDealer.entity, damageDealer.entity.damage);
+        // int def =
+        //     manager
+        //         .CalculateDefence(entity.target.GetComponent<PlayerControler>().entity,
+        //         entity.target.GetComponent<PlayerControler>().entity.defense);
+        
+        // int resultDmg = dmg - def;
+
+        // if (resultDmg < 0)
+        // {
+        //     resultDmg = 0;
+        // }
     }
 
     /// <summary>
@@ -219,7 +235,7 @@ public class BossController : EntityController
 
             if (
                 entity.target != null &&
-                !entity.target.GetComponent<Player>().entity.dead
+                !entity.target.GetComponent<PlayerControler>().entity.dead
             )
             {
                 animator.SetTrigger("knifeAtack");
@@ -239,11 +255,11 @@ public class BossController : EntityController
                         manager
                             .CalculateDefence(entity
                                 .target
-                                .GetComponent<Player>()
+                                .GetComponent<PlayerControler>()
                                 .entity,
                             entity
                                 .target
-                                .GetComponent<Player>()
+                                .GetComponent<PlayerControler>()
                                 .entity
                                 .defense);
 
@@ -258,13 +274,13 @@ public class BossController : EntityController
                     int playerCurrentHealth =
                         entity
                             .target
-                            .GetComponent<Player>()
+                            .GetComponent<PlayerControler>()
                             .entity
                             .currentHealth;
                     if (playerCurrentHealth - resultDmg > 0)
                         entity
                             .target
-                            .GetComponent<Player>()
+                            .GetComponent<PlayerControler>()
                             .entity
                             .currentHealth -= resultDmg;
                     else if (
@@ -273,7 +289,7 @@ public class BossController : EntityController
                     )
                         entity
                             .target
-                            .GetComponent<Player>()
+                            .GetComponent<PlayerControler>()
                             .entity
                             .currentHealth = 0;
                 }
