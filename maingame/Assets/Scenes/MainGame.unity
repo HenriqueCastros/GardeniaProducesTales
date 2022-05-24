@@ -95092,6 +95092,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5656312225910173867, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656312225910173867, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656312225910173867, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656312225910173867, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656312225910173867, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656312225910173867, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9077232625403938281, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
       propertyPath: m_IsActive
       value: 0
