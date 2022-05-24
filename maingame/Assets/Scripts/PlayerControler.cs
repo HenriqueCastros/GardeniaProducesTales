@@ -14,6 +14,7 @@ public class PlayerControler : EntityController
     float input_y = 0;
 
     bool isWalking = false;
+    bool isAttacking = false;
     
     private GameObject gardeniaButton;
     private GameObject callButton;
@@ -116,16 +117,30 @@ public class PlayerControler : EntityController
         }
         
         if (input_x > 0) {
-            attackObj.transform.localPosition  = new Vector3(1, 0, 0);
+            attackObj.transform.localPosition = new Vector3(1, 0, 0);
+            attackObj.transform.localScale = new Vector3(5, 5, 0);
         } else if  (input_x < 0) {
-            attackObj.transform.localPosition  = new Vector3(-1, 0, 0);
+            attackObj.transform.localPosition = new Vector3(-1, 0, 0);
+            attackObj.transform.localScale = new Vector3(-5, 5, 0);
+        
         }
         
         playerAnimator.SetBool("isWalking", isWalking);
-
-        if (Input.GetButtonDown("Fire1")) playerAnimator.SetTrigger("attack");
+        
+        if (Input.GetButtonDown("Fire1") && !isAttacking) StartCoroutine(Attack());
     }
     
+    IEnumerator Attack() {
+        playerAnimator.SetTrigger("attack");
+        isAttacking = true;
+        yield return new WaitForSeconds(entity.attackDelay);
+        attackObj.SetActive(true);
+        yield return new WaitForSeconds(entity.attackTimer);
+        attackObj.SetActive(false);
+        yield return new WaitForSeconds(entity.attackRecharge);
+        isAttacking = false;
+    }
+
     IEnumerator RegenerateHealth()
     {
         while (true)

@@ -34,7 +34,9 @@ public class Entity
     
     [Header("Combat")]
     public float attackDistance = 5f;
-    public float attackTimer = 1f;
+    public float attackTimer = 0.3f;
+    public float attackDelay = 0.4f;
+    public float attackRecharge = 0.3f;
     public float cooldown = 2;
     public bool inCombat = false;
     public GameObject target;

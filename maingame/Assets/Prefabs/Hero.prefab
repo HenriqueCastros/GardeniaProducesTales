@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 453585897959709922}
   - component: {fileID: 453585897959709935}
   - component: {fileID: 453585897959709934}
-  - component: {fileID: 453585897959709932}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -121,8 +120,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowMoviment: 1
-  player: {fileID: 0}
+  entity:
+    name: 
+    level: 0
+    currentHealth: 0
+    maxHealth: 0
+    currentMana: 0
+    maxMana: 0
+    currentStamina: 0
+    maxStamina: 0
+    damage: 1
+    defense: 1
+    resistence: 1
+    strength: 1
+    speed: 60
+    inteligence: 1
+    willPower: 1
+    attackDistance: 5
+    attackTimer: 1
+    cooldown: 2
+    inCombat: 0
+    target: {fileID: 0}
+    combatCoroutine: 0
+    dead: 0
   playerAnimator: {fileID: 453585897959709923}
+  health: {fileID: 0}
+  regenerateHp: 1
+  regenerateHPValue: 5
+  regenerateHPTime: 2
+  manager: {fileID: 0}
 --- !u!50 &453585897959709935
 Rigidbody2D:
   serializedVersion: 4
@@ -160,46 +186,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &453585897959709932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453585897959709925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49684d4910a325f43922c263c0b23d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entity:
-    name: 
-    level: 0
-    currentHealth: 2
-    maxHealth: 100
-    currentMana: 0
-    maxMana: 0
-    currentStamina: 0
-    maxStamina: 0
-    damage: 1
-    defense: 1
-    resistence: 1
-    strength: 1
-    speed: 60
-    inteligence: 1
-    willPower: 1
-    attackDistance: 0.5
-    attackTimer: 1
-    cooldown: 2
-    inCombat: 0
-    target: {fileID: 0}
-    combatCoroutine: 0
-    dead: 0
-  health: {fileID: 0}
-  regenerateHp: 1
-  regenerateHPValue: 5
-  regenerateHPTime: 2
-  manager: {fileID: 0}
 --- !u!1 &453585898880648618
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1860261186676448589}
   - component: {fileID: 5656312225910173867}
-  - component: {fileID: 8417705165530666977}
+  - component: {fileID: 1129752593824630177}
   m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
@@ -310,7 +296,7 @@ Transform:
   m_GameObject: {fileID: 9077232625403938281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.15933, y: 0.01, z: 0}
-  m_LocalScale: {x: 1.31866, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 453585897959709921}
   m_RootOrder: 1
@@ -355,8 +341,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1561d00100a2666478d2675eb041db3e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -366,8 +352,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &8417705165530666977
-CapsuleCollider2D:
+--- !u!61 &1129752593824630177
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -376,9 +362,19 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.25}
+  m_EdgeRadius: 0

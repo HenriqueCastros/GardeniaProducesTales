@@ -11,6 +11,7 @@ TagManager:
   - buffataque
   - Enemy
   - GardeniaChat
+  - PlayerHitbox
   layers:
   - Default
   - TransparentFX

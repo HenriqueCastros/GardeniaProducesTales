@@ -7,30 +7,42 @@ using UnityEngine;
 public class BossController : EntityController
 {
     [Header("Controller")]
-
     public GameManager manager;
+
     [Header("Patrol")]
     public Transform[] waypointList;
+
     public float arrivalDistance = 0.5f;
+
     public float waitTime = 0;
-    
+
     //Privates
     Transform targetWapoint;
+
     int currenntWaypoint = 0;
+
     float lastDistanceToTarget = 0f;
+
     float currentWaitTime = 0f;
+
     [Header("Experience Reword")]
     public int rewardExperience = 10;
+
     public int lootGoldMin = 3;
+
     public int lootGoldMax = 10;
-    
+
     [Header("Respawn")]
     public GameObject prefab;
+
     public bool respawn = true;
+
     public float respawnTime = 5f;
+
     Rigidbody2D rb2D;
+
     Animator animator;
-    
+
     // public bool allowMoviment = true;
     // Vector2 vector2 = Vector2.zero;
     /// <summary>
@@ -137,24 +149,25 @@ public class BossController : EntityController
             TakeDamage(colider.transform.parent.gameObject);
         }
     }
-    
+
     private void TakeDamage(GameObject damageDealer)
     {
-        Debug.Log(damageDealer);
-        Debug.Log(damageDealer.GetComponent<EntityController>().entity);
-        
-        // int dmg = manager.CalculateDamage(damageDealer.entity, damageDealer.entity.damage);
-        // int def =
-        //     manager
-        //         .CalculateDefence(entity.target.GetComponent<PlayerControler>().entity,
-        //         entity.target.GetComponent<PlayerControler>().entity.defense);
-        
-        // int resultDmg = dmg - def;
+        Entity damager = damageDealer.GetComponent<EntityController>().entity;
 
-        // if (resultDmg < 0)
-        // {
-        //     resultDmg = 0;
-        // }
+        int dmg = manager.CalculateDamage(damager, damager.damage);
+        int def = manager.CalculateDefence(entity, entity.defense);
+
+        int resultDmg = dmg - def;
+        
+        if (resultDmg < 0)
+        {
+            resultDmg = 0;
+        }
+        
+        Debug.Log("dano:"+resultDmg);
+        entity.currentHealth -= resultDmg;
+        
+        if (entity.currentHealth < 0) entity.currentHealth = 0;
     }
 
     /// <summary>
