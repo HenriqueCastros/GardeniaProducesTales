@@ -95181,6 +95181,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6376306154626650603, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6376306154626650603, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: m_TagString
       value: EnemyHitbox
       objectReference: {fileID: 0}

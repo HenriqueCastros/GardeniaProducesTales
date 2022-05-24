@@ -89,6 +89,18 @@ public class BossController : EntityController
             Dead();
         }
 
+        float input_x = animator.GetFloat("input_x");
+        if (input_x < 0)
+        {
+            attackObj.transform.localPosition = new Vector3(0.5f, 0, 0);
+            attackObj.transform.localScale = new Vector3(2, 2, 0);
+        }
+        else if (input_x > 0)
+        {
+            attackObj.transform.localPosition = new Vector3(-0.5f, 0, 0);
+            attackObj.transform.localScale = new Vector3(-2, 2, 0);
+        }
+
         if (!entity.inCombat)
         {
             if (waypointList.Length > 0)
@@ -102,20 +114,11 @@ public class BossController : EntityController
         }
         else
         {
-
-            //if (entity.target != null && entity.inCombat)
-            //{
-                if (!entity.combatCoroutine)
-                {
-                    entity.combatCoroutine = true;
-                    StartCoroutine(Attack());
-                }
-                //else
-                //{
-                    //entity.combatCoroutine = false;
-                //    StopCoroutine(Attack());
-                //}
-            //}
+            if (!entity.combatCoroutine)
+            {
+                entity.combatCoroutine = true;
+                StartCoroutine(Attack());
+            }
         }
     }
 
