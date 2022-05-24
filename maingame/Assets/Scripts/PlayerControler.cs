@@ -8,15 +8,17 @@ using UnityEngine.UI;
 public class PlayerControler : EntityController
 {
     public Animator playerAnimator;
-    
+
     float input_x = 0;
 
     float input_y = 0;
 
     bool isWalking = false;
+
     bool isAttacking = false;
-    
+
     private GameObject gardeniaButton;
+
     private GameObject callButton;
 
     [Header("Player UI")]
@@ -24,14 +26,17 @@ public class PlayerControler : EntityController
 
     [Header("Player Regeneration")]
     public bool regenerateHp = true;
+
     public int regenerateHPValue = 5;
+
     public int regenerateHPTime = 2;
-    
+
     [Header("Game Manager")]
     public GameManager manager;
 
     // public bool allowMoviment = true;
     Rigidbody2D rb2D;
+
     GameObject attackObj;
 
     Vector2 moviment = Vector2.zero;
@@ -61,7 +66,7 @@ public class PlayerControler : EntityController
         attackObj = gameObject.transform.Find("AttackArea").gameObject;
         gardeniaButton = GameObject.Find("GardeniaButton");
         callButton = GameObject.Find("CallButton");
-        
+
         if (manager == null)
         {
             Debug.LogError("instancie o gameManager para essa entidade");
@@ -83,7 +88,7 @@ public class PlayerControler : EntityController
 
         StartCoroutine(RegenerateHealth());
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -115,22 +120,26 @@ public class PlayerControler : EntityController
             playerAnimator.SetFloat("input_x", input_x);
             playerAnimator.SetFloat("input_y", input_y);
         }
-        
-        if (input_x > 0) {
+
+        if (input_x > 0)
+        {
             attackObj.transform.localPosition = new Vector3(1, 0, 0);
             attackObj.transform.localScale = new Vector3(5, 5, 0);
-        } else if  (input_x < 0) {
+        }
+        else if (input_x < 0)
+        {
             attackObj.transform.localPosition = new Vector3(-1, 0, 0);
             attackObj.transform.localScale = new Vector3(-5, 5, 0);
-        
         }
-        
+
         playerAnimator.SetBool("isWalking", isWalking);
-        
-        if (Input.GetButtonDown("Fire1") && !isAttacking) StartCoroutine(Attack());
+
+        if (Input.GetButtonDown("Fire1") && !isAttacking)
+            StartCoroutine(Attack());
     }
-    
-    IEnumerator Attack() {
+
+    IEnumerator Attack()
+    {
         playerAnimator.SetTrigger("attack");
         isAttacking = true;
         yield return new WaitForSeconds(entity.attackDelay);
@@ -139,6 +148,26 @@ public class PlayerControler : EntityController
         attackObj.SetActive(false);
         yield return new WaitForSeconds(entity.attackRecharge);
         isAttacking = false;
+    }
+
+    private void TakeDamage(GameObject damageDealer)
+    {
+        Entity damager = damageDealer.GetComponent<EntityController>().entity;
+
+        int dmg = manager.CalculateDamage(damager, damager.damage);
+        int def = manager.CalculateDefence(entity, entity.defense);
+
+        int resultDmg = dmg - def;
+
+        if (resultDmg < 0)
+        {
+            resultDmg = 0;
+        }
+
+        Debug.Log("dano:" + resultDmg);
+        entity.currentHealth -= resultDmg;
+
+        if (entity.currentHealth < 0) entity.currentHealth = 0;
     }
 
     IEnumerator RegenerateHealth()
@@ -192,6 +221,10 @@ public class PlayerControler : EntityController
             Destroy(collision.gameObject);
             entity.damage += 1;
             print("Attack was buffed.");
+        }
+        else if (collision.gameObject.CompareTag("EnemyHitbox"))
+        {
+            TakeDamage(collision.gameObject.transform.parent.gameObject);
         }
     }
 }

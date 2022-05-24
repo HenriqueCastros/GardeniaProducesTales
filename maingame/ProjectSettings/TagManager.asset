@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - GardeniaChat
   - PlayerHitbox
+  - EnemyHitbox
   layers:
   - Default
   - TransparentFX

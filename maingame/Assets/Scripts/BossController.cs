@@ -145,18 +145,17 @@ public class BossController : EntityController
     {
         if (colider.tag == "PlayerHitbox")
         {
-            Debug.Log("dano");
             TakeDamage(colider.transform.parent.gameObject);
         }
     }
-
+    
     private void TakeDamage(GameObject damageDealer)
     {
         Entity damager = damageDealer.GetComponent<EntityController>().entity;
 
         int dmg = manager.CalculateDamage(damager, damager.damage);
         int def = manager.CalculateDefence(entity, entity.defense);
-
+        
         int resultDmg = dmg - def;
         
         if (resultDmg < 0)
