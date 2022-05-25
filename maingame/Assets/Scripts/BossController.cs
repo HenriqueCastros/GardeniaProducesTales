@@ -8,6 +8,7 @@ public class BossController : EntityController
 {
     [Header("Controller")]
     public GameManager manager;
+    public PlayerControler player;
 
     [Header("Patrol")]
     public Transform[] waypointList;
@@ -15,6 +16,8 @@ public class BossController : EntityController
     public float arrivalDistance = 0.5f;
 
     public float waitTime = 0;
+
+    public int distanceFollowPlayer = 30;
 
     //Privates
     Transform targetWapoint;
@@ -103,13 +106,20 @@ public class BossController : EntityController
 
         if (!entity.inCombat)
         {
-            if (waypointList.Length > 0)
-            {
-                Patrulhar();
+            float distanceToTarget = Vector2.Distance(transform.position, player.transform.position);
+
+            if(distanceToTarget <= distanceFollowPlayer){
+                followPlayer();
             }
-            else
-            {
-                animator.SetBool("isWalking", false);
+            else{
+                if (waypointList.Length > 0)
+                {
+                    Patrulhar();
+                }
+                else
+                {
+                    animator.SetBool("isWalking", false);
+                }
             }
         }
         else
@@ -173,6 +183,29 @@ public class BossController : EntityController
             entity.inCombat = false;
             entity.target = null;
         }
+    }
+
+    void followPlayer(){
+
+        if (entity.dead || !allowMoviment)
+        {
+            return;
+        }
+        
+        float distanceToTarget = Vector2.Distance(transform.position, player.transform.position);
+
+        if(distanceToTarget <= distanceFollowPlayer){
+            
+            Vector2 direction =
+                (player.transform.position - transform.position).normalized;
+            animator.SetFloat("input_x", direction.x);
+            animator.SetFloat("input_y", direction.y);
+
+            rb2D
+                .MovePosition(rb2D.position +
+                direction * (entity.speed * Time.fixedDeltaTime));
+        }
+
     }
 
     void Patrulhar()

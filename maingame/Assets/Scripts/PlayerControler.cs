@@ -80,7 +80,7 @@ public class PlayerControler : EntityController
         int dmg = (int) manager.CalculateDamage(entity, 7);
         int def = (int) manager.CalculateDefence(entity, 4);
 
-        entity.currentHealth = 2;
+        entity.currentHealth = entity.maxHealth;
 
         entity.currentStamina = entity.maxStamina;
 
