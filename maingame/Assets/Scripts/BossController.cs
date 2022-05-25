@@ -259,6 +259,7 @@ public class BossController : EntityController
     {
         entity.dead = true;
         entity.inCombat = false;
+        attackObj.SetActive(false);
         entity.target = null;
         animator.SetBool("isWalking", false);
 

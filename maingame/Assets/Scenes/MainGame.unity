@@ -95196,6 +95196,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 8280710403349526339, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: waypointList.Array.data[0]
       value: 
