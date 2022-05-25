@@ -17,7 +17,7 @@ public class BossController : EntityController
 
     public float waitTime = 0;
 
-    public int distanceFollowPlayer = 30;
+    public float distanceFollowPlayer = 100f;
 
     //Privates
     Transform targetWapoint;
@@ -109,6 +109,14 @@ public class BossController : EntityController
             float distanceToTarget = Vector2.Distance(transform.position, player.transform.position);
 
             if(distanceToTarget <= distanceFollowPlayer){
+                if(distanceToTarget <= 20f){
+                    
+                    if (entity.dead) return;
+    
+                    entity.inCombat = true;
+                    entity.target = player.gameObject;
+                    
+                }
                 followPlayer();
             }
             else{

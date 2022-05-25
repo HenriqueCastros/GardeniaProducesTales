@@ -95197,7 +95197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 453585897959709934, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1860261186676448589, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
       propertyPath: m_LocalScale.x
@@ -95270,7 +95270,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1420929319918283076, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 5.78905
       objectReference: {fileID: 0}
     - target: {fileID: 1420929319918283076, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: m_LocalScale.y
@@ -95278,7 +95278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1420929319918283076, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.12625
       objectReference: {fileID: 0}
     - target: {fileID: 1420929319918283076, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -95300,13 +95300,25 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 8280710403349526338, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
+      propertyPath: m_Mass
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280710403349526339, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280710403349526339, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8280710403349526339, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8280710403349526339, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: player
@@ -95317,8 +95329,20 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
+      propertyPath: entity.speed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
+      propertyPath: allowMoviment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: arrivalDistance
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
+      propertyPath: distanceFollowPlayer
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: waypointList.Array.size
