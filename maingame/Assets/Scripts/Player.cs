@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
         return false;
     }
-    
+
     // [Header("Player UI")]
     // Start is called before the first frame update
     void Start()
@@ -55,75 +55,86 @@ public class Player : MonoBehaviour
         entity.maxMana = manager.CalculateMana(entity);
         entity.maxStamina = manager.CalculateStamina(entity);
 
-        int dmg = (int) manager.CalculateDamage(entity, 7);
-        int def = (int) manager.CalculateDefence(entity, 4);
+        int dmg = (int)manager.CalculateDamage(entity, 7);
+        int def = (int)manager.CalculateDefence(entity, 4);
 
         entity.currentHealth = 2;
 
         entity.currentStamina = entity.maxStamina;
 
-        health.value = (float)entity.currentHealth;   
+        health.value = (float)entity.currentHealth;
 
         StartCoroutine(RegenerateHealth());
-    }
 
-    private void Update(){
-        gardeniaButton.SetActive(CheckCloseToTag("gardenia", 30) && !GameObject.Find("PauseMenu"));
-        if (gardeniaButton.activeSelf)
-            callButton.SetActive(false);
-        else
-            callButton.SetActive(true);
-        health.value = (float)entity.currentHealth/(float)entity.maxHealth;
-        if(Input.GetKeyDown(KeyCode.Space)){
-            entity.currentHealth -= 1;
+
+        void PlayerDied()
+        {
+            if (Input.GetKeyDown("space"))
+            {
+                LevelManager.instance.GameOver();
+                gameObject.SetActive(false);
+            }
 
         }
-    }
 
-    IEnumerator RegenerateHealth()
-    {
-        while (true)
+        void Update() {
+            gardeniaButton.SetActive(CheckCloseToTag("gardenia", 30) && !GameObject.Find("PauseMenu"));
+            if (gardeniaButton.activeSelf)
+                callButton.SetActive(false);
+            else
+                callButton.SetActive(true);
+            health.value = (float)entity.currentHealth / (float)entity.maxHealth;
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                entity.currentHealth -= 1;
+                PlayerDied(); 
+            }
+        }
+
+        IEnumerator RegenerateHealth()
         {
-            if (regenerateHp)
+            while (true)
             {
-                if (entity.currentHealth < entity.maxHealth)
+                if (regenerateHp)
                 {
-                    Debug.LogFormat("Recuperando hp");
-                    entity.currentHealth += regenerateHPValue;
-                    yield return new WaitForSeconds(regenerateHPTime);
+                    if (entity.currentHealth < entity.maxHealth)
+                    {
+                        Debug.LogFormat("Recuperando hp");
+                        entity.currentHealth += regenerateHPValue;
+                        yield return new WaitForSeconds(regenerateHPTime);
+                    }
+                    else
+                    {
+                        yield return null;
+                    }
                 }
                 else
                 {
                     yield return null;
                 }
             }
-            else
+        }
+        void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("buffvida"))
             {
-                yield return null;
+                Destroy(collision.gameObject);
+                entity.maxHealth += 20;
+                entity.currentHealth += 20;
+                print("MaxLife was buffed.");
             }
-        }
-    }
-      private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("buffvida"))
-        {
-            Destroy(collision.gameObject);          
-            entity.maxHealth += 20;
-            entity.currentHealth += 20;
-            print("MaxLife was buffed.");
-        }
 
-    else if(collision.gameObject.CompareTag("buffdefesa"))
-        {
-            Destroy(collision.gameObject);          
-            entity.defense += 1;
-            print("Defense was buffed.");
-        }
-         else if(collision.gameObject.CompareTag("buffataque"))
-        {
-            Destroy(collision.gameObject);          
-            entity.damage += 1;
-            print("Attack was buffed.");
+            else if (collision.gameObject.CompareTag("buffdefesa"))
+            {
+                Destroy(collision.gameObject);
+                entity.defense += 1;
+                print("Defense was buffed.");
+            }
+            else if (collision.gameObject.CompareTag("buffataque"))
+            {
+                Destroy(collision.gameObject);
+                entity.damage += 1;
+                print("Attack was buffed.");
+            }
         }
     }
 }
