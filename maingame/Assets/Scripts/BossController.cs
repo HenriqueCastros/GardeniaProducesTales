@@ -110,7 +110,7 @@ public class BossController : EntityController
 
             if(distanceToTarget <= distanceFollowPlayer){
                 if(distanceToTarget <= 20f){
-                    
+
                     if (entity.dead) return;
     
                     entity.inCombat = true;
