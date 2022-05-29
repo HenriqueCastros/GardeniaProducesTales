@@ -13,6 +13,7 @@ TagManager:
   - GardeniaChat
   - PlayerHitbox
   - EnemyHitbox
+  - followDistance
   layers:
   - Default
   - TransparentFX

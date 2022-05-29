@@ -80,7 +80,7 @@ public class PlayerControler : EntityController
         int dmg = (int) manager.CalculateDamage(entity, 7);
         int def = (int) manager.CalculateDefence(entity, 4);
 
-        entity.currentHealth = 2;
+        entity.currentHealth = entity.maxHealth;
 
         entity.currentStamina = entity.maxStamina;
 
@@ -92,6 +92,14 @@ public class PlayerControler : EntityController
     // Update is called once per frame
     void Update()
     {
+        if (entity.dead) return;
+
+        if (entity.currentHealth <= 0)
+        {
+            entity.currentHealth = 0;
+            Dead();
+        }
+
         gardeniaButton
             .SetActive(CheckCloseToTag("gardenia", 30) &&
             !GameObject.Find("PauseMenu"));
@@ -226,5 +234,21 @@ public class PlayerControler : EntityController
         {
             TakeDamage(collision.gameObject.transform.parent.gameObject);
         }
+    }
+
+    void Dead()
+    {
+        entity.dead = true;
+        entity.inCombat = false;
+        attackObj.SetActive(false);
+        entity.target = null;
+        playerAnimator.SetBool("isWalking", false);
+
+        //manager.GainExp(rewardExperience);
+        Debug.Log("Inimigo morreu" + entity.name);
+
+        playerAnimator.SetBool("isDead", true);
+        StopAllCoroutines();
+
     }
 }
