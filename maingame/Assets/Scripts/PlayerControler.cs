@@ -14,9 +14,9 @@ public class PlayerControler : EntityController
     float input_y = 0;
 
     bool isWalking = false;
-
+    
     bool isAttacking = false;
-
+    
     private GameObject gardeniaButton;
 
     private GameObject callButton;
@@ -30,15 +30,14 @@ public class PlayerControler : EntityController
     public int regenerateHPValue = 5;
 
     public int regenerateHPTime = 2;
-
+    
     [Header("Game Manager")]
     public GameManager manager;
 
     // public bool allowMoviment = true;
     Rigidbody2D rb2D;
-
     GameObject attackObj;
-
+    SpriteRenderer sprite;
     Vector2 moviment = Vector2.zero;
 
     bool CheckCloseToTag(string tag, float minimumDistance)
@@ -63,6 +62,7 @@ public class PlayerControler : EntityController
     {
         isWalking = false;
         rb2D = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
         attackObj = gameObject.transform.Find("AttackArea").gameObject;
         gardeniaButton = GameObject.Find("GardeniaButton");
         callButton = GameObject.Find("CallButton");
@@ -116,10 +116,14 @@ public class PlayerControler : EntityController
             entity.currentHealth -= 1;
         }
 
-        if (!allowMoviment) return;
-
-        input_x = Input.GetAxisRaw("Horizontal");
-        input_y = Input.GetAxisRaw("Vertical");
+        if (!allowMoviment) {
+            input_x = 0;
+            input_y = 0;
+        } else {
+            input_x = Input.GetAxisRaw("Horizontal");
+            input_y = Input.GetAxisRaw("Vertical");
+        }
+        
         isWalking = (input_x != 0 || input_y != 0);
         moviment = new Vector2(input_x, input_y);
 
@@ -128,7 +132,7 @@ public class PlayerControler : EntityController
             playerAnimator.SetFloat("input_x", input_x);
             playerAnimator.SetFloat("input_y", input_y);
         }
-
+        
         if (input_x > 0)
         {
             attackObj.transform.localPosition = new Vector3(1, 0, 0);
@@ -150,37 +154,55 @@ public class PlayerControler : EntityController
     {
         playerAnimator.SetTrigger("attack");
         isAttacking = true;
+        allowMoviment = false;
         yield return new WaitForSeconds(entity.attackDelay);
         attackObj.SetActive(true);
         yield return new WaitForSeconds(entity.attackTimer);
         attackObj.SetActive(false);
+        allowMoviment = true;
         yield return new WaitForSeconds(entity.attackRecharge);
         isAttacking = false;
     }
-
+    
     private void TakeDamage(GameObject damageDealer)
     {
+        StartCoroutine(FlashDamage());
         Entity damager = damageDealer.GetComponent<EntityController>().entity;
-
+        
         int dmg = manager.CalculateDamage(damager, damager.damage);
         int def = manager.CalculateDefence(entity, entity.defense);
-
+        
         int resultDmg = dmg - def;
-
+        
         if (resultDmg < 0)
         {
             resultDmg = 0;
         }
-
-        Debug.Log("dano:" + resultDmg);
+        
+        Debug.Log("dano:"+resultDmg);
         entity.currentHealth -= resultDmg;
-
+        
         if (entity.currentHealth < 0) entity.currentHealth = 0;
+    }
+    
+    private IEnumerator FlashDamage() {
+        sprite.color = new Color(1, 0, 0, 1);
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = new Color(1, 1, 1, 1);
+        yield return new WaitForSeconds(0.1f);
+        sprite.color = new Color(1, 0, 0, 1);
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = new Color(1, 1, 1, 1);
+        yield return new WaitForSeconds(0.1f);
+        // sprite.color = new Color(1, 0, 0, 1);
+        // yield return new WaitForSeconds(0.1f);
+        // sprite.color = new Color(1, 1, 1, 1);
+        // yield return new WaitForSeconds(0.1f);
     }
 
     IEnumerator RegenerateHealth()
     {
-        while (true)
+        while (!entity.dead)
         {
             if (regenerateHp)
             {

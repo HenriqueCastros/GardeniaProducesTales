@@ -46,6 +46,7 @@ public class BossController : EntityController
 
     Animator animator;
     GameObject attackObj;
+    SpriteRenderer sprite;
 
     // public bool allowMoviment = true;
     // Vector2 vector2 = Vector2.zero;
@@ -57,6 +58,7 @@ public class BossController : EntityController
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
 
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         attackObj = gameObject.transform.Find("AttackArea").gameObject;
@@ -95,13 +97,13 @@ public class BossController : EntityController
         float input_x = animator.GetFloat("input_x");
         if (input_x < 0)
         {
-            attackObj.transform.localPosition = new Vector3(0.5f, 0, 0);
-            attackObj.transform.localScale = new Vector3(2, 2, 0);
+            attackObj.transform.localPosition = new Vector3(-0.6f, 0, 0);
+            attackObj.transform.localScale = new Vector3(-2.2f, 2.2f, 0);
         }
         else if (input_x > 0)
         {
-            attackObj.transform.localPosition = new Vector3(-0.5f, 0, 0);
-            attackObj.transform.localScale = new Vector3(-2, 2, 0);
+            attackObj.transform.localPosition = new Vector3(0.6f, 0, 0);
+            attackObj.transform.localScale = new Vector3(2.2f, 2.2f, 0);
         }
 
         if (!entity.inCombat)
@@ -153,7 +155,7 @@ public class BossController : EntityController
 
     private void OnTriggerEnter2D(Collider2D colider)
     {
-
+        
         if (colider.tag == "PlayerHitbox")
         {
             TakeDamage(colider.transform.parent.gameObject);
@@ -162,8 +164,9 @@ public class BossController : EntityController
     
     private void TakeDamage(GameObject damageDealer)
     {
+        StartCoroutine(FlashDamage());
         Entity damager = damageDealer.GetComponent<EntityController>().entity;
-
+        
         int dmg = manager.CalculateDamage(damager, damager.damage);
         int def = manager.CalculateDefence(entity, entity.defense);
         
@@ -179,7 +182,22 @@ public class BossController : EntityController
         
         if (entity.currentHealth < 0) entity.currentHealth = 0;
     }
-
+    
+    private IEnumerator FlashDamage() {
+        sprite.color = new Color(1, 0, 0, 1);
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = new Color(1, 1, 1, 1);
+        yield return new WaitForSeconds(0.1f);
+        sprite.color = new Color(1, 0, 0, 1);
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = new Color(1, 1, 1, 1);
+        yield return new WaitForSeconds(0.1f);
+        // sprite.color = new Color(1, 0, 0, 1);
+        // yield return new WaitForSeconds(0.1f);
+        // sprite.color = new Color(1, 1, 1, 1);
+        // yield return new WaitForSeconds(0.1f);
+    }
+    
     /// <summary>
     /// OnTriggerExit is called when the Collider other has stopped touching the trigger.
     /// </summary>
@@ -275,12 +293,14 @@ public class BossController : EntityController
     {
         animator.SetTrigger("attack");
         entity.inCombat = true;
+        allowMoviment = false; 
         yield return new WaitForSeconds(entity.attackDelay);
         attackObj.SetActive(true);
         yield return new WaitForSeconds(entity.attackTimer);
         attackObj.SetActive(false);
         yield return new WaitForSeconds(entity.attackRecharge);
         entity.inCombat = false;
+        allowMoviment = true;
         entity.combatCoroutine = false;
     }
 
