@@ -146,7 +146,7 @@ public class PlayerControler : EntityController
 
         playerAnimator.SetBool("isWalking", isWalking);
 
-        if (Input.GetButtonDown("Fire1") && !isAttacking)
+        if (Input.GetButtonDown("Fire1") && !isAttacking && allowMoviment)
             StartCoroutine(Attack());
     }
 
@@ -179,7 +179,6 @@ public class PlayerControler : EntityController
             resultDmg = 0;
         }
         
-        Debug.Log("dano:"+resultDmg);
         entity.currentHealth -= resultDmg;
         
         if (entity.currentHealth < 0) entity.currentHealth = 0;
@@ -208,7 +207,6 @@ public class PlayerControler : EntityController
             {
                 if (entity.currentHealth < entity.maxHealth)
                 {
-                    Debug.LogFormat("Recuperando hp");
                     entity.currentHealth += regenerateHPValue;
                     yield return new WaitForSeconds(regenerateHPTime);
                 }
@@ -265,12 +263,12 @@ public class PlayerControler : EntityController
         attackObj.SetActive(false);
         entity.target = null;
         playerAnimator.SetBool("isWalking", false);
-
+        
         //manager.GainExp(rewardExperience);
-        Debug.Log("Inimigo morreu" + entity.name);
-
+        
         playerAnimator.SetBool("isDead", true);
         StopAllCoroutines();
-
+    
+        PauseMenu.ActivateYouDied();
     }
 }

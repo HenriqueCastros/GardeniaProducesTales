@@ -38,7 +38,7 @@ public class UITextTypeWriter : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.Log("bobbingText not found");
+            Debug.LogError("bobbingText not found");
         }
     }
 

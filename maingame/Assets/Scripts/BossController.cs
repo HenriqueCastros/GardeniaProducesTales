@@ -177,7 +177,6 @@ public class BossController : EntityController
             resultDmg = 0;
         }
         
-        Debug.Log("dano:"+resultDmg);
         entity.currentHealth -= resultDmg;
         
         if (entity.currentHealth < 0) entity.currentHealth = 0;
@@ -325,11 +324,16 @@ public class BossController : EntityController
         animator.SetBool("isWalking", false);
 
         //manager.GainExp(rewardExperience);
-        Debug.Log("Inimigo morreu" + entity.name);
+        Debug.Log("Inimigo morreu" + gameObject.tag);
+        
 
         animator.SetBool("isDead", true);
         StopAllCoroutines();
         if (entity.respawn)
             StartCoroutine(Respawn());
+        
+        if (gameObject.tag == "boss") {
+            PauseMenu.ActivateYouWon();
+        }
     }
 }

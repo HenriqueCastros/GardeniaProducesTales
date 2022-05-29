@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     {
         Int32 result =
             (entity.resistence * 10) + (entity.level * 4) + 10;
-        Debug.LogFormat("reuslt od calculate health: {0}", result);
+        // Debug.LogFormat("reuslt od calculate health: {0}", result);
 
         return result;
     }
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
             (entity.resistence + entity.willPower) +
             (entity.level * 4) +
             10;
-        Debug.LogFormat("reuslt od calculate stamina: {0}", result);
+        // Debug.LogFormat("reuslt od calculate stamina: {0}", result);
 
         return result;
     }
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         Int32 result =
             (entity.resistence * 8) + (entity.level * 4) + 10;
-        Debug.LogFormat("reuslt od calculate mana: {0}", result);
+        // Debug.LogFormat("reuslt od calculate mana: {0}", result);
 
         return result;
     }
@@ -39,15 +39,15 @@ public class GameManager : MonoBehaviour
         System.Random rand = new System.Random();
         Int32 result =
             (entity.damage * 3) + (armorDamage * 2) + rand.Next(1, 20);
-        Debug.LogFormat("reuslt od calculate damage: {0}", result);
-
+        // Debug.LogFormat("reuslt od calculate damage: {0}", result);
+        
         return result;
     }
-
+    
     public Int32 CalculateDefence(Entity entity, int armorDefence)
     {
         Int32 result = (entity.defense * 3) + (armorDefence * 2);
-        Debug.LogFormat("reuslt od calculate mana: {0}", result);
+        // Debug.LogFormat("reuslt od calculate mana: {0}", result);
 
         return result;
     }

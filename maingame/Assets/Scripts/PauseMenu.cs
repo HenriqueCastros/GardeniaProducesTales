@@ -5,7 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    void SetPlayerMoviment(bool active)
+    static GameObject youDied;
+    static GameObject youWon;
+    
+    void Start() {
+        youDied = youDied != null ? youDied : GameObject.Find("You Died");
+        if (youDied != null) youDied.SetActive(false);
+        
+        youWon = youWon != null ? youWon : GameObject.Find("You Won");
+        if (youWon != null) youWon.SetActive(false);
+    }
+    
+    static void SetPlayerMoviment(bool active)
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         
@@ -14,13 +25,13 @@ public class PauseMenu : MonoBehaviour
             players[i].GetComponent<PlayerControler>().allowMoviment = active;
         }
     }
-    
+
     public void PauseGame()
     {
         SetPlayerMoviment(false);
         Time.timeScale--;
     }
-    
+
     public void ResumeGame()
     {
         SetPlayerMoviment(true);
@@ -30,5 +41,25 @@ public class PauseMenu : MonoBehaviour
     public void BackToMenu()
     {
         SceneManager.LoadScene(0);
+    }
+    
+    public void GoToCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
+    public static void ActivateYouDied() {
+        SetPlayerMoviment(false);
+        youDied.SetActive(true);
+    } 
+
+    public static void ActivateYouWon() {
+        SetPlayerMoviment(false);
+        youWon.SetActive(true);
+    } 
+
+    public void ReloadLevel()
+    {
+        Application.LoadLevel(Application.loadedLevel);
     }
 }
