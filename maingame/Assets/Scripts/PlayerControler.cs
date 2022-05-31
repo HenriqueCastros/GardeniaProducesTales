@@ -234,8 +234,8 @@ public class PlayerControler : EntityController
         if (collision.gameObject.CompareTag("buffvida"))
         {
             Destroy(collision.gameObject);
-            entity.maxHealth += 20;
-            entity.currentHealth += 20;
+            entity.maxHealth += 60;
+            entity.currentHealth += 60;
             print("MaxLife was buffed.");
         }
         else if (collision.gameObject.CompareTag("buffdefesa"))
@@ -247,7 +247,7 @@ public class PlayerControler : EntityController
         else if (collision.gameObject.CompareTag("buffataque"))
         {
             Destroy(collision.gameObject);
-            entity.damage += 1;
+            entity.damage += 2;
             print("Attack was buffed.");
         }
         else if (collision.gameObject.CompareTag("EnemyHitbox"))

@@ -39706,7 +39706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: entity.resistence
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: distanceFollowPlayer
@@ -100700,8 +100700,16 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 453585897959709922, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
+      propertyPath: entity.damage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 453585897959709922, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
       propertyPath: entity.maxHealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 453585897959709922, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
+      propertyPath: entity.resistence
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 453585897959709922, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
       propertyPath: entity.attackDelay
@@ -100885,8 +100893,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
+      propertyPath: entity.damage
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: arrivalDistance
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
+      propertyPath: entity.resistence
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8280710403349526350, guid: 6f05f1e83255eb34084508ada46c6f2f, type: 3}
       propertyPath: distanceFollowPlayer
