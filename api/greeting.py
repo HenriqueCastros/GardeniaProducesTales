@@ -23,7 +23,8 @@ def respond():
     if not gpt_input:
         gpt_input = scenarios[mode]
 
-    response["MESSAGE"] = gpt2.generate_text(gpt_input, max_length=150)
+    response["MESSAGE"] = gpt2.generate_text(gpt_input, max_length=(len(gpt_input.split()) + 50))
+    scenarios[mode] = response["MESSAGE"]
 
     # Return the response in json format
     return jsonify(response)
