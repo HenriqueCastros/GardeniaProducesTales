@@ -263,12 +263,12 @@ public class PlayerControler : EntityController
         attackObj.SetActive(false);
         entity.target = null;
         playerAnimator.SetBool("isWalking", false);
+        PauseMenu.ActivateYouDied();
         
         //manager.GainExp(rewardExperience);
         
         playerAnimator.SetBool("isDead", true);
         StopAllCoroutines();
     
-        PauseMenu.ActivateYouDied();
     }
 }

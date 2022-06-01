@@ -13,20 +13,27 @@ public class GardeniaMsg
 public class GardeniaInteraction : MonoBehaviour
 {
     public GameObject textPromt;
+    public GameObject actions;
 
     private int initialState = 0;
     private List<string> states = new List<string> { "introduction", "prefight", "postfight", "preboss", "win", "death" };
-
-    public void generateNewInfo()
+    
+    public void generateNewInfo(string state)
     {
+        actions.SetActive(false);
         textPromt.GetComponent<TMPro.TextMeshProUGUI>().text = "Let me think a little...";
-        Task<string> getTask = GetAsync("http://127.0.0.1:5000/getmsg/?mode="+ states[initialState]);
+        Task<string> getTask = GetAsync("http://127.0.0.1:5000/getmsg/?mode="+ state);
         getTask.GetAwaiter().OnCompleted(() =>
        {
            GardeniaMsg result = UnityEngine.JsonUtility.FromJson<GardeniaMsg>(getTask.Result);
            textPromt.GetComponent<TMPro.TextMeshProUGUI>().text = result.MESSAGE;
            textPromt.GetComponent<UITextTypeWriter>().OnEnable();
        });
+    }
+
+    public void PromptChoice() {
+        textPromt.GetComponent<TMPro.TextMeshProUGUI>().text = "What do you want to learn about?";
+        actions.SetActive(true);
     }
 
     public string Get(string uri)
