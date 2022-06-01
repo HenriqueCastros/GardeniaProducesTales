@@ -63,7 +63,7 @@ public class UITextTypeWriter : MonoBehaviour
     {
         mode = "write";
         bobbingText.SetActive(false);
-        int substringEnd = story.IndexOf(" ", MAX_TXT_LEN);
+        int substringEnd = story.IndexOf(" ", MAX_TXT_LEN > story.Length ? story.Length - 1 : MAX_TXT_LEN);
         
         foreach (char c in story.Substring(0, substringEnd != -1 ?  substringEnd : story.Length - 1))
         {
@@ -75,7 +75,7 @@ public class UITextTypeWriter : MonoBehaviour
         }
 
         bobbingText.SetActive(true);
-        if (story.Length <= MAX_TXT_LEN)
+        if (story.Length <= MAX_TXT_LEN && !story.Equals("What do you want to learn about?"))
             mode = "close";
         else
             mode = "show_more";
@@ -95,7 +95,7 @@ public class UITextTypeWriter : MonoBehaviour
                 mode = "close";
             }else if (mode == "show_more")
             {
-                int substringEnd = story.IndexOf(" ", MAX_TXT_LEN);
+                int substringEnd = story.IndexOf(" ", MAX_TXT_LEN > story.Length ? story.Length - 1 : MAX_TXT_LEN);
                 story = story.Remove(0, substringEnd != -1 ?  substringEnd : story.Length - 1);
                 txt.text = "";
                 StartCoroutine("PlayText");

@@ -2131,7 +2131,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Try Again
+  m_text: World
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4c90c7dfc88dbc438a1119da04b75b0, type: 2}
   m_sharedMaterial: {fileID: 4411225317921107268, guid: b4c90c7dfc88dbc438a1119da04b75b0, type: 2}
@@ -15512,7 +15512,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Try Again
+  m_text: Enemy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4c90c7dfc88dbc438a1119da04b75b0, type: 2}
   m_sharedMaterial: {fileID: 4411225317921107268, guid: b4c90c7dfc88dbc438a1119da04b75b0, type: 2}
@@ -34526,7 +34526,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: win
+          m_StringArgument: player
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1032334291
@@ -35067,7 +35067,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: win
+          m_StringArgument: boss
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1089793116
@@ -35946,7 +35946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Try Again
+  m_text: Me
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4c90c7dfc88dbc438a1119da04b75b0, type: 2}
   m_sharedMaterial: {fileID: 4411225317921107268, guid: b4c90c7dfc88dbc438a1119da04b75b0, type: 2}
@@ -37461,9 +37461,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  m_text: Hey, wake up! You look a bit lost. Do you remember why we are here? I am
+    Gardenia, your loyal sidekick. We met each other a couple years ago when we were
+    on a mission together. The mission was given by some sourcerers, they wanted
+    us to stop a huge threat to the world. The mission failed and then the whole
+    world was sealed for the last half of Earth. I have fought my way through all
+    this over the years but never let go - I am so glad that you are here.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4c90c7dfc88dbc438a1119da04b75b0, type: 2}
   m_sharedMaterial: {fileID: 4411225317921107268, guid: b4c90c7dfc88dbc438a1119da04b75b0, type: 2}
@@ -38650,7 +38653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471151543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -237.4, y: -59.9, z: 0}
+  m_LocalPosition: {x: -600.3, y: 25, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
@@ -40114,7 +40117,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: win
+          m_StringArgument: introduction
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1665625044
@@ -102475,11 +102478,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 453585897959709921, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -191.4
+      value: -619.7
       objectReference: {fileID: 0}
     - target: {fileID: 453585897959709921, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -90.7
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 453585897959709921, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
       propertyPath: m_LocalPosition.z
