@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerControler : EntityController
 {
     public Animator playerAnimator;
-
+ 
     float input_x = 0;
 
     float input_y = 0;
@@ -119,6 +119,8 @@ public class PlayerControler : EntityController
         if (!allowMoviment) {
             input_x = 0;
             input_y = 0;
+           
+          
         } else {
             input_x = Input.GetAxisRaw("Horizontal");
             input_y = Input.GetAxisRaw("Vertical");
@@ -271,4 +273,8 @@ public class PlayerControler : EntityController
     
         PauseMenu.ActivateYouDied();
     }
+
+
+
+
 }
