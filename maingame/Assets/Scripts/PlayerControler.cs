@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class PlayerControler : EntityController
 {
     public Animator playerAnimator;
+    public FixedJoystick fJoystick;
  
     float input_x = 0;
 
@@ -119,11 +120,14 @@ public class PlayerControler : EntityController
         if (!allowMoviment) {
             input_x = 0;
             input_y = 0;
-           
-          
         } else {
-            input_x = Input.GetAxisRaw("Horizontal");
-            input_y = Input.GetAxisRaw("Vertical");
+            if (fJoystick != null) {
+                input_x = fJoystick.Horizontal;
+                input_y = fJoystick.Vertical;
+            } else {
+                input_x = Input.GetAxisRaw("Horizontal");
+                input_y = Input.GetAxisRaw("Vertical");
+            }
         }
         
         isWalking = (input_x != 0 || input_y != 0);
