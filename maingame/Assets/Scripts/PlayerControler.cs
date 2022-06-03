@@ -121,13 +121,13 @@ public class PlayerControler : EntityController
             input_x = 0;
             input_y = 0;
         } else {
+            input_x = Input.GetAxisRaw("Horizontal");
+            input_y = Input.GetAxisRaw("Vertical");
+            
             if (fJoystick != null) {
-                input_x = fJoystick.Horizontal;
-                input_y = fJoystick.Vertical;
-            } else {
-                input_x = Input.GetAxisRaw("Horizontal");
-                input_y = Input.GetAxisRaw("Vertical");
-            }
+                input_x += fJoystick.Horizontal;
+                input_y += fJoystick.Vertical;
+            } 
         }
         
         isWalking = (input_x != 0 || input_y != 0);
