@@ -101779,6 +101779,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1613259469}
     - target: {fileID: 453585897959709922, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
+      propertyPath: fJoystick
+      value: 
+      objectReference: {fileID: 1463327736}
+    - target: {fileID: 453585897959709922, guid: 6f0d5e0c71b35ab45b428e6e2c7846e3, type: 3}
       propertyPath: entity.level
       value: 50
       objectReference: {fileID: 0}
